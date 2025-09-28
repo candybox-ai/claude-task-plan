@@ -1,0 +1,150 @@
+#!/bin/bash
+
+# Claude Code intelligent task planning script
+# Usage: claude-task-plan "your task description"
+
+# Language detection
+detect_language() {
+    if [[ "$CLAUDE_TASK_PLAN_LANG" == "en" ]]; then
+        echo "en"
+    elif [[ "$CLAUDE_TASK_PLAN_LANG" == "zh" ]]; then
+        echo "zh"
+    elif [[ "$task" =~ [一-龯] ]]; then
+        echo "zh"
+    else
+        echo "en"
+    fi
+}
+
+# Usage messages
+show_usage() {
+    local lang=$(detect_language)
+    if [[ "$lang" == "zh" ]]; then
+        echo "用法: claude-task-plan \"任务描述\""
+        echo "示例: claude-task-plan \"实现用户登录功能\""
+    else
+        echo "Usage: claude-task-plan \"your task description\""
+        echo "Example: claude-task-plan \"Implement user authentication\""
+    fi
+}
+
+if [ $# -eq 0 ]; then
+    show_usage
+    exit 1
+fi
+
+task="$1"
+lang=$(detect_language)
+
+# Build prompt based on language
+if [[ "$lang" == "zh" ]]; then
+    prompt="任务描述：$task
+
+请按照以下步骤执行，确保任务100%按期望完成："
+else
+    prompt="Task Description: $task
+
+Please execute following steps to ensure 100% task completion as expected:"
+fi
+
+# Add workflow steps based on language
+if [[ "$lang" == "zh" ]]; then
+    workflow="
+1. 【需求澄清阶段】
+   如果对任务描述有任何疑问或需要更多信息，请先提问解决疑问。
+   不要假设任何细节，确保完全理解任务要求。
+
+2. 【需求确认与成功标准定义】
+   澄清疑问后，请：
+   - 明确重述理解的任务需求
+   - 详细定义\"成功完成\"的具体标准
+   - 确定可衡量的交付成果和质量指标
+   - 识别潜在的边界条件和约束
+   - 等待我确认需求理解和成功标准
+
+3. 【可行性评估与方案制定】
+   需求确认后，进行：
+   - 评估所需的专业Agent类型和技术栈
+   - 检查Agent可用性，如不可用则搜索安装或寻找替代方案
+   - 分析技术可行性和资源需求
+   - 制定详细的实施方案和执行策略
+   - 设计并行/串行的最优调度策略
+
+4. 【方案确认与风险评估】
+   方案制定后：
+   - 展示完整的执行方案（Agent选择、执行顺序、时间预估）
+   - 识别潜在风险点和失败场景
+   - 制定风险缓解措施和备选方案
+   - 确保方案100%可执行且能达成目标
+   - 等待最终方案确认
+
+5. 【执行监控阶段】
+   方案确认后开始执行：
+   - 按计划调度和执行各Agent任务
+   - 实时监控执行进度和状态
+   - 主动报告关键节点和异常情况
+   - 遇到问题时立即启动风险缓解措施
+   - 确保执行过程可控可追溯
+
+6. 【交付验证阶段】
+   执行完成后严格验证：
+   - 对照成功标准逐项检查交付成果
+   - 验证结果是否100%符合期望需求
+   - 进行质量评估和完整性检查
+   - 如不满足标准，分析根因并重新优化
+   - 直到完全满足期望才视为任务完成
+
+目标：生成完全符合我期望的高质量结果。"
+else
+    workflow="
+1. 【Requirement Clarification】
+   If there are any questions or need more information about task description, ask questions first.
+   Don't assume any details, ensure complete understanding of requirements.
+
+2. 【Requirement Confirmation & Success Criteria Definition】
+   After clarification, please:
+   - Clearly restate understood task requirements
+   - Define specific standards for \"successful completion\"
+   - Determine measurable deliverables and quality indicators
+   - Identify potential boundary conditions and constraints
+   - Wait for confirmation of requirement understanding and success criteria
+
+3. 【Feasibility Assessment & Solution Design】
+   After requirement confirmation, proceed with:
+   - Evaluate required professional agent types and tech stack
+   - Check agent availability, search/install if unavailable, or find alternatives
+   - Analyze technical feasibility and resource requirements
+   - Develop detailed implementation plan and execution strategy
+   - Design optimal parallel/serial scheduling strategy
+
+4. 【Solution Confirmation & Risk Assessment】
+   After solution design:
+   - Display complete execution plan (agent selection, sequence, time estimation)
+   - Identify potential risks and failure scenarios
+   - Develop risk mitigation measures and backup plans
+   - Ensure solution is 100% executable and can achieve goals
+   - Wait for final solution confirmation
+
+5. 【Execution Monitoring】
+   After solution confirmation, start execution:
+   - Schedule and execute agent tasks according to plan
+   - Monitor execution progress and status in real-time
+   - Proactively report key milestones and exceptions
+   - Immediately activate risk mitigation when problems occur
+   - Ensure execution process is controllable and traceable
+
+6. 【Delivery Verification】
+   After execution completion, strictly verify:
+   - Check deliverables against success criteria item by item
+   - Verify if results 100% meet expected requirements
+   - Conduct quality assessment and completeness check
+   - If standards not met, analyze root cause and re-optimize
+   - Consider task complete only when expectations are fully satisfied
+
+Goal: Generate high-quality results that completely meet your expectations."
+fi
+
+# 构建完整的指令
+prompt="$prompt$workflow"
+
+claude "$prompt"
