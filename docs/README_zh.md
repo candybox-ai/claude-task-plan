@@ -1,6 +1,6 @@
 # Claude Task Plan
 
-[English Documentation](../README.md) | [中文文档](./README_zh.md)
+[English](../README.md)
 
 一个为 Claude Code CLI 设计的智能任务规划与执行工具，确保任务 100% 按期望完成，成功保障率达 95%。
 
