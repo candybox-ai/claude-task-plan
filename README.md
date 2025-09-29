@@ -96,15 +96,18 @@ claude-task-plan "Deploy application to Kubernetes cluster"
 ## 🛠️ Configuration
 
 ### Language Settings
-Set your preferred language:
+The tool automatically detects language from your task description (Chinese characters → Chinese interface, otherwise → English).
+
+To force a specific language:
 ```bash
-export CLAUDE_TASK_PLAN_LANG=en  # or zh for Chinese
+export CLAUDE_TASK_PLAN_LANG=en  # Force English
+export CLAUDE_TASK_PLAN_LANG=zh  # Force Chinese
 ```
 
-### Configuration
-Create a config file at `~/.claude-task-plan/config.yaml`:
+### Optional Configuration
+Create a config file at `~/.claude-task-plan/config.yaml` for additional settings:
 ```yaml
-language: auto  # auto, en, zh
+# Currently only timeout is supported
 timeout: 7200   # 2 hours in seconds
 ```
 

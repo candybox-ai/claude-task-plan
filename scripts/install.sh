@@ -108,7 +108,7 @@ create_config() {
     if [[ ! -f "$config_file" ]]; then
         cat > "$config_file" << EOF
 # Claude Task Plan Configuration
-language: auto  # auto, en, zh
+# Language is auto-detected from task description or set via CLAUDE_TASK_PLAN_LANG
 timeout: 7200   # 2 hours in seconds
 EOF
         print_info "Created default config: $config_file"

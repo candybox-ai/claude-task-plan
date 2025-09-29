@@ -96,15 +96,18 @@ claude-task-plan "部署应用到Kubernetes集群"
 ## 🛠️ 配置
 
 ### 语言设置
-设置首选语言：
+工具会自动检测任务描述中的语言（包含中文字符 → 中文界面，否则 → 英文界面）。
+
+强制指定语言：
 ```bash
-export CLAUDE_TASK_PLAN_LANG=zh  # 或 en 表示英文
+export CLAUDE_TASK_PLAN_LANG=zh  # 强制中文
+export CLAUDE_TASK_PLAN_LANG=en  # 强制英文
 ```
 
-### 配置
-在 `~/.claude-task-plan/config.yaml` 创建配置文件：
+### 可选配置
+在 `~/.claude-task-plan/config.yaml` 创建配置文件设置其他选项：
 ```yaml
-language: auto  # auto, en, zh
+# 目前仅支持超时设置
 timeout: 7200   # 2小时（秒）
 ```
 
