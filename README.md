@@ -112,9 +112,7 @@ timeout: 7200   # 2 hours in seconds
 
 See the [examples](./examples/) directory for detailed use cases:
 - [Web Development](./examples/web-development.md)
-- [Data Science](./examples/data-science.md)
-- [DevOps](./examples/devops.md)
-- [Mobile Development](./examples/mobile-development.md)
+- [Data Analysis](./examples/data-analysis.md)
 
 ## 🤝 Contributing
 

@@ -111,10 +111,8 @@ timeout: 7200   # 2小时（秒）
 ## 📚 示例
 
 查看 [examples](../examples/) 目录了解详细用例：
-- [Web开发](../examples/web-development_zh.md)
-- [数据科学](../examples/data-science_zh.md)
-- [DevOps](../examples/devops_zh.md)
-- [移动开发](../examples/mobile-development_zh.md)
+- [Web开发](../examples/web-development.md)
+- [数据分析](../examples/data-analysis_zh.md)
 
 ## 🤝 贡献
 
