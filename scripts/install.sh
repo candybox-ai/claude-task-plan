@@ -110,12 +110,6 @@ create_config() {
 # Claude Task Plan Configuration
 language: auto  # auto, en, zh
 timeout: 7200   # 2 hours in seconds
-preferred_agents:
-  - frontend-developer
-  - backend-architect
-  - devops-troubleshooter
-  - security-auditor
-  - database-optimizer
 EOF
         print_info "Created default config: $config_file"
     fi

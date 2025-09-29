@@ -101,15 +101,11 @@ Set your preferred language:
 export CLAUDE_TASK_PLAN_LANG=en  # or zh for Chinese
 ```
 
-### Custom Agent Preferences
+### Configuration
 Create a config file at `~/.claude-task-plan/config.yaml`:
 ```yaml
-language: en
-preferred_agents:
-  - frontend-developer
-  - backend-architect
-  - devops-troubleshooter
-timeout: 7200  # 2 hours
+language: auto  # auto, en, zh
+timeout: 7200   # 2 hours in seconds
 ```
 
 ## 📚 Examples

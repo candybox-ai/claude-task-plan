@@ -101,15 +101,11 @@ claude-task-plan "部署应用到Kubernetes集群"
 export CLAUDE_TASK_PLAN_LANG=zh  # 或 en 表示英文
 ```
 
-### 自定义Agent偏好
+### 配置
 在 `~/.claude-task-plan/config.yaml` 创建配置文件：
 ```yaml
-language: zh
-preferred_agents:
-  - frontend-developer
-  - backend-architect
-  - devops-troubleshooter
-timeout: 7200  # 2小时
+language: auto  # auto, en, zh
+timeout: 7200   # 2小时（秒）
 ```
 
 ## 📚 示例
