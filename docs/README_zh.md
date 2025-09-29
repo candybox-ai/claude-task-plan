@@ -52,8 +52,8 @@ claude-task-plan "优化数据库查询性能"
 
 #### 数据分析
 ```bash
-claude-task-plan "分析用户行为数据并生成洞察报告"
-claude-task-plan "创建数据可视化仪表板"
+claude-task-plan "分析/data/user_behavior.csv中的用户行为数据，生成包含用户留存率、转化漏斗、用户画像的洞察报告，输出PDF格式"
+claude-task-plan "基于/data/sales_data目录下的CSV文件创建交互式销售仪表板，包含营收趋势、地区业绩、实时KPI监控，使用Python和Plotly实现"
 ```
 
 #### 运维部署

@@ -52,8 +52,8 @@ claude-task-plan "Optimize database queries for better performance"
 
 #### Data Analysis
 ```bash
-claude-task-plan "Analyze user behavior data and generate insights"
-claude-task-plan "Create data visualization dashboard"
+claude-task-plan "Analyze user behavior data in /data/user_logs/ directory, generate insights report with retention analysis, conversion funnel, and user segmentation in PDF format"
+claude-task-plan "Create interactive sales dashboard from /data/sales.json with revenue trends, regional performance, and real-time KPI monitoring using Python and Plotly"
 ```
 
 #### DevOps & Infrastructure
