@@ -18,13 +18,13 @@ A command-line agent dispatch tool for Claude Code that intelligently selects an
 
 ### Option 1: Quick Install (Recommended)
 ```bash
-curl -fsSL https://raw.githubusercontent.com/your-username/claude-agent-dispatch/main/scripts/install.sh | bash
+curl -fsSL https://raw.githubusercontent.com/candybox-ai/claude-agent-dispatch/main/scripts/install.sh | bash
 ```
 
 ### Option 2: Manual Installation
 ```bash
 # Clone and install
-git clone https://github.com/your-username/claude-agent-dispatch.git
+git clone https://github.com/candybox-ai/claude-agent-dispatch.git
 cd claude-agent-dispatch
 chmod +x scripts/install.sh
 ./scripts/install.sh
@@ -33,7 +33,7 @@ chmod +x scripts/install.sh
 ### Option 3: Direct Download
 ```bash
 # Download just the script
-curl -o claude-agent-dispatch https://raw.githubusercontent.com/your-username/claude-agent-dispatch/main/bin/claude-agent-dispatch
+curl -o claude-agent-dispatch https://raw.githubusercontent.com/candybox-ai/claude-agent-dispatch/main/bin/claude-agent-dispatch
 chmod +x claude-agent-dispatch
 sudo mv claude-agent-dispatch /usr/local/bin/
 ```
@@ -135,13 +135,13 @@ See the [examples](./examples/) directory for detailed use cases:
 ## 🤝 Contributing
 
 We welcome contributions! Feel free to:
-- Report bugs and suggest features via [GitHub Issues](https://github.com/your-username/claude-agent-dispatch/issues)
+- Report bugs and suggest features via [GitHub Issues](https://github.com/candybox-ai/claude-agent-dispatch/issues)
 - Submit pull requests with improvements
 - Share your usage examples and feedback
 
 ### Development Setup
 ```bash
-git clone https://github.com/your-username/claude-agent-dispatch.git
+git clone https://github.com/candybox-ai/claude-agent-dispatch.git
 cd claude-agent-dispatch
 chmod +x bin/claude-agent-dispatch
 ```
@@ -153,9 +153,9 @@ MIT License - see the [LICENSE](./LICENSE) file for details.
 ## 🆘 Support
 
 - 📖 [Documentation](./docs/)
-- 🐛 [Report Issues](https://github.com/your-username/claude-agent-dispatch/issues)
-- 💬 [Discussions](https://github.com/your-username/claude-agent-dispatch/discussions)
-- 🌟 [Star the Project](https://github.com/your-username/claude-agent-dispatch)
+- 🐛 [Report Issues](https://github.com/candybox-ai/claude-agent-dispatch/issues)
+- 💬 [Discussions](https://github.com/candybox-ai/claude-agent-dispatch/discussions)
+- 🌟 [Star the Project](https://github.com/candybox-ai/claude-agent-dispatch)
 
 ## 🏷️ Version
 

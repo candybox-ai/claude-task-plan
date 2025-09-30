@@ -132,7 +132,7 @@ main() {
     verify_installation
 
     print_success "Installation complete!"
-    print_info "Documentation: https://github.com/your-username/claude-agent-dispatch"
+    print_info "Documentation: https://github.com/candybox-ai/claude-agent-dispatch"
 }
 
 # Run if executed directly

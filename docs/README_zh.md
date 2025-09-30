@@ -18,13 +18,13 @@
 
 ### 方式1：快速安装（推荐）
 ```bash
-curl -fsSL https://raw.githubusercontent.com/your-username/claude-agent-dispatch/main/scripts/install.sh | bash
+curl -fsSL https://raw.githubusercontent.com/candybox-ai/claude-agent-dispatch/main/scripts/install.sh | bash
 ```
 
 ### 方式2：手动安装
 ```bash
 # 克隆并安装
-git clone https://github.com/your-username/claude-agent-dispatch.git
+git clone https://github.com/candybox-ai/claude-agent-dispatch.git
 cd claude-agent-dispatch
 chmod +x scripts/install.sh
 ./scripts/install.sh
@@ -33,7 +33,7 @@ chmod +x scripts/install.sh
 ### 方式3：直接下载
 ```bash
 # 仅下载脚本文件
-curl -o claude-agent-dispatch https://raw.githubusercontent.com/your-username/claude-agent-dispatch/main/bin/claude-agent-dispatch
+curl -o claude-agent-dispatch https://raw.githubusercontent.com/candybox-ai/claude-agent-dispatch/main/bin/claude-agent-dispatch
 chmod +x claude-agent-dispatch
 sudo mv claude-agent-dispatch /usr/local/bin/
 ```
@@ -135,13 +135,13 @@ export CLAUDE_AGENT_DISPATCH_LANG=en  # 强制英文
 ## 🤝 贡献
 
 欢迎贡献！你可以：
-- 通过 [GitHub Issues](https://github.com/your-username/claude-agent-dispatch/issues) 报告问题和建议功能
+- 通过 [GitHub Issues](https://github.com/candybox-ai/claude-agent-dispatch/issues) 报告问题和建议功能
 - 提交改进的拉取请求
 - 分享你的使用示例和反馈
 
 ### 开发环境设置
 ```bash
-git clone https://github.com/your-username/claude-agent-dispatch.git
+git clone https://github.com/candybox-ai/claude-agent-dispatch.git
 cd claude-agent-dispatch
 chmod +x bin/claude-agent-dispatch
 ```
@@ -153,9 +153,9 @@ MIT 许可证 - 查看 [LICENSE](../LICENSE) 文件了解详情。
 ## 🆘 支持
 
 - 📖 [文档](../docs/)
-- 🐛 [报告问题](https://github.com/your-username/claude-agent-dispatch/issues)
-- 💬 [讨论](https://github.com/your-username/claude-agent-dispatch/discussions)
-- 🌟 [为项目点星](https://github.com/your-username/claude-agent-dispatch)
+- 🐛 [报告问题](https://github.com/candybox-ai/claude-agent-dispatch/issues)
+- 💬 [讨论](https://github.com/candybox-ai/claude-agent-dispatch/discussions)
+- 🌟 [为项目点星](https://github.com/candybox-ai/claude-agent-dispatch)
 
 ## 🏷️ 版本
 
