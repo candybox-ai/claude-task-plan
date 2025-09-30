@@ -1,13 +1,13 @@
 #!/bin/bash
 
-# Claude Code intelligent task planning script
-# Usage: claude-task-plan "your task description"
+# Claude Code intelligent agent dispatch script
+# Usage: claude-agent-dispatch "your task description"
 
 # Language detection
 detect_language() {
-    if [[ "$CLAUDE_TASK_PLAN_LANG" == "en" ]]; then
+    if [[ "$CLAUDE_AGENT_DISPATCH_LANG" == "en" ]]; then
         echo "en"
-    elif [[ "$CLAUDE_TASK_PLAN_LANG" == "zh" ]]; then
+    elif [[ "$CLAUDE_AGENT_DISPATCH_LANG" == "zh" ]]; then
         echo "zh"
     elif [[ "$task" =~ [一-龯] ]]; then
         echo "zh"
@@ -20,11 +20,11 @@ detect_language() {
 show_usage() {
     local lang=$(detect_language)
     if [[ "$lang" == "zh" ]]; then
-        echo "用法: claude-task-plan \"任务描述\""
-        echo "示例: claude-task-plan \"实现用户登录功能\""
+        echo "用法: claude-agent-dispatch \"任务描述\""
+        echo "示例: claude-agent-dispatch \"实现用户登录功能\""
     else
-        echo "Usage: claude-task-plan \"your task description\""
-        echo "Example: claude-task-plan \"Implement user authentication\""
+        echo "Usage: claude-agent-dispatch \"your task description\""
+        echo "Example: claude-agent-dispatch \"Implement user authentication\""
     fi
 }
 

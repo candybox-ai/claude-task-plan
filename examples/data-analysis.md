@@ -1,12 +1,12 @@
 # Data Analysis Examples
 
-This document shows realistic examples of using `claude-task-plan` for data analysis tasks.
+This document shows realistic examples of using `claude-agent-dispatch` for data analysis tasks.
 
 ## Example 1: E-commerce User Behavior Analysis
 
 ### Task Description
 ```bash
-claude-task-plan "Analyze user behavior data from /data/ecommerce_logs.csv containing columns: user_id, session_id, timestamp, page_url, action_type, product_id, duration_seconds. Generate insights on user journey patterns, conversion funnel analysis, and session abandonment points. Create visualizations and export findings as PDF report with actionable recommendations."
+claude-agent-dispatch "Analyze user behavior data from /data/ecommerce_logs.csv containing columns: user_id, session_id, timestamp, page_url, action_type, product_id, duration_seconds. Generate insights on user journey patterns, conversion funnel analysis, and session abandonment points. Create visualizations and export findings as PDF report with actionable recommendations."
 ```
 
 ### What Claude Might Ask (Clarification Phase)
@@ -34,7 +34,7 @@ claude-task-plan "Analyze user behavior data from /data/ecommerce_logs.csv conta
 
 ### Task Description
 ```bash
-claude-task-plan "Create interactive sales dashboard using /data/sales_2024.json with fields: {date, region, salesperson, product_category, revenue, units_sold, customer_segment}. Build real-time metrics showing YTD performance, regional comparisons, top performers, and trending analysis. Deploy as web dashboard accessible to sales team with filters and drill-down capabilities."
+claude-agent-dispatch "Create interactive sales dashboard using /data/sales_2024.json with fields: {date, region, salesperson, product_category, revenue, units_sold, customer_segment}. Build real-time metrics showing YTD performance, regional comparisons, top performers, and trending analysis. Deploy as web dashboard accessible to sales team with filters and drill-down capabilities."
 ```
 
 ### What You'll Get
@@ -63,7 +63,7 @@ claude-task-plan "Create interactive sales dashboard using /data/sales_2024.json
 
 ### Task Description
 ```bash
-claude-task-plan "Build machine learning model to predict customer churn using /data/customer_data.csv with features: subscription_date, last_login, feature_usage_counts, support_tickets, payment_history, demographics. Achieve >85% accuracy with model interpretability. Include feature importance analysis, risk scoring system, and recommendations for retention strategies."
+claude-agent-dispatch "Build machine learning model to predict customer churn using /data/customer_data.csv with features: subscription_date, last_login, feature_usage_counts, support_tickets, payment_history, demographics. Achieve >85% accuracy with model interpretability. Include feature importance analysis, risk scoring system, and recommendations for retention strategies."
 ```
 
 ### Detailed Workflow
@@ -95,12 +95,12 @@ claude-task-plan "Build machine learning model to predict customer churn using /
 
 **❌ Too Vague:**
 ```bash
-claude-task-plan "Analyze my sales data"
+claude-agent-dispatch "Analyze my sales data"
 ```
 
 **✅ Specific and Actionable:**
 ```bash
-claude-task-plan "Analyze Q4 2024 sales data in /data/sales_q4.xlsx to identify top-performing product categories by region, calculate month-over-month growth rates, and predict Q1 2025 revenue using time series forecasting. Output Excel dashboard with pivot tables and Python script for monthly updates."
+claude-agent-dispatch "Analyze Q4 2024 sales data in /data/sales_q4.xlsx to identify top-performing product categories by region, calculate month-over-month growth rates, and predict Q1 2025 revenue using time series forecasting. Output Excel dashboard with pivot tables and Python script for monthly updates."
 ```
 
 ### 🎯 Include These Details

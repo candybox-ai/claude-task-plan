@@ -1,11 +1,11 @@
 # 数据分析示例
 
-本文档展示如何使用 `claude-task-plan` 进行各种数据分析任务，并正确指定数据源。
+本文档展示如何使用 `claude-agent-dispatch` 进行各种数据分析任务，并正确指定数据源。
 
 ## 示例1：用户行为分析
 
 ```bash
-claude-task-plan "分析/data/user_logs/目录下的用户行为数据CSV文件，包含字段：user_id、timestamp、action、page_url。生成综合洞察报告，包含用户留存分析、转化漏斗、用户分群。使用Python pandas和matplotlib输出PDF格式可视化报告。"
+claude-agent-dispatch "分析/data/user_logs/目录下的用户行为数据CSV文件，包含字段：user_id、timestamp、action、page_url。生成综合洞察报告，包含用户留存分析、转化漏斗、用户分群。使用Python pandas和matplotlib输出PDF格式可视化报告。"
 ```
 
 **预期执行流程：**
@@ -19,7 +19,7 @@ claude-task-plan "分析/data/user_logs/目录下的用户行为数据CSV文件�
 ## 示例2：销售仪表板创建
 
 ```bash
-claude-task-plan "基于/data/sales.json创建交互式销售仪表板，数据格式为{date, region, product, revenue, quantity}。构建实时KPI监控，包含营收趋势、地区业绩对比、产品分析。使用Python、Plotly和Streamlit构建Web界面。"
+claude-agent-dispatch "基于/data/sales.json创建交互式销售仪表板，数据格式为{date, region, product, revenue, quantity}。构建实时KPI监控，包含营收趋势、地区业绩对比、产品分析。使用Python、Plotly和Streamlit构建Web界面。"
 ```
 
 **关键Agent使用：**
@@ -31,7 +31,7 @@ claude-task-plan "基于/data/sales.json创建交互式销售仪表板，数据�
 ## 示例3：金融风险分析
 
 ```bash
-claude-task-plan "分析/data/portfolio.xlsx中的金融投资组合数据，包含sheets：stocks、bonds、options。计算风险价值(VaR)、投资组合优化、相关性分析。使用Python scipy和numpy进行蒙特卡洛模拟，生成风险评估报告。"
+claude-agent-dispatch "分析/data/portfolio.xlsx中的金融投资组合数据，包含sheets：stocks、bonds、options。计算风险价值(VaR)、投资组合优化、相关性分析。使用Python scipy和numpy进行蒙特卡洛模拟，生成风险评估报告。"
 ```
 
 **复杂工作流程：**
@@ -44,7 +44,7 @@ claude-task-plan "分析/data/portfolio.xlsx中的金融投资组合数据，包
 ## 示例4：机器学习模型开发
 
 ```bash
-claude-task-plan "使用客户数据/data/customers.csv构建预测模型，特征包括：age、income、purchase_history、demographics。预测客户流失概率。包含特征工程、模型选择、超参数调优、性能评估。输出模型文件和评估报告。"
+claude-agent-dispatch "使用客户数据/data/customers.csv构建预测模型，特征包括：age、income、purchase_history、demographics。预测客户流失概率。包含特征工程、模型选择、超参数调优、性能评估。输出模型文件和评估报告。"
 ```
 
 **流程重点：**
@@ -56,7 +56,7 @@ claude-task-plan "使用客户数据/data/customers.csv构建预测模型，特�
 ## 示例5：时间序列预测
 
 ```bash
-claude-task-plan "使用历史数据/data/traffic_logs.csv预测网站流量，字段包含：timestamp、page_views、unique_visitors、bounce_rate。创建30天预测，包含置信区间。使用ARIMA、Prophet或LSTM模型。生成预测报告和模型对比建议。"
+claude-agent-dispatch "使用历史数据/data/traffic_logs.csv预测网站流量，字段包含：timestamp、page_views、unique_visitors、bounce_rate。创建30天预测，包含置信区间。使用ARIMA、Prophet或LSTM模型。生成预测报告和模型对比建议。"
 ```
 
 ## 数据分析最佳实践

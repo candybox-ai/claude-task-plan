@@ -1,8 +1,8 @@
-# Claude Task Plan
+# Claude Agent Dispatch
 
 [中文](./docs/README_zh.md)
 
-An intelligent task planning and execution tool for Claude Code CLI that ensures 100% task completion with 95% success guarantee.
+A command-line agent dispatch tool for Claude Code that intelligently selects and coordinates agents to complete your tasks. Transform vague requests into successful executions through smart agent orchestration and rigorous workflow management.
 
 ## 🎯 Features
 
@@ -14,52 +14,71 @@ An intelligent task planning and execution tool for Claude Code CLI that ensures
 
 ## 📦 Installation
 
-### Quick Install (macOS/Linux)
+**Prerequisites:** [Claude Code CLI](https://github.com/anthropics/claude-code) must be installed first.
 
+### Option 1: Quick Install (Recommended)
 ```bash
-curl -fsSL https://raw.githubusercontent.com/your-username/claude-task-plan/main/scripts/install.sh | bash
+curl -fsSL https://raw.githubusercontent.com/your-username/claude-agent-dispatch/main/scripts/install.sh | bash
 ```
 
-### Manual Install
-
-1. Clone the repository:
+### Option 2: Manual Installation
 ```bash
-git clone https://github.com/your-username/claude-task-plan.git
-cd claude-task-plan
-```
-
-2. Run the installation script:
-```bash
+# Clone and install
+git clone https://github.com/your-username/claude-agent-dispatch.git
+cd claude-agent-dispatch
 chmod +x scripts/install.sh
 ./scripts/install.sh
 ```
 
+### Option 3: Direct Download
+```bash
+# Download just the script
+curl -o claude-agent-dispatch https://raw.githubusercontent.com/your-username/claude-agent-dispatch/main/bin/claude-agent-dispatch
+chmod +x claude-agent-dispatch
+sudo mv claude-agent-dispatch /usr/local/bin/
+```
+
+### Verify Installation
+```bash
+claude-agent-dispatch --help
+# Should display usage information
+```
+
 ## 🚀 Usage
 
-### Basic Syntax
+### Quick Start
 ```bash
-claude-task-plan "your task description"
+claude-agent-dispatch "your task description"
 ```
 
-### Examples
+Claude will automatically:
+1. 📝 **Clarify** your requirements
+2. ✅ **Define** success criteria
+3. 🔍 **Plan** the execution strategy
+4. ⚠️ **Assess** potential risks
+5. 🚀 **Execute** with agent coordination
+6. ✨ **Verify** complete delivery
 
-#### Software Development
+### Real-World Examples
+
+**🔒 Add Authentication to Existing App**
 ```bash
-claude-task-plan "Implement user authentication with JWT"
-claude-task-plan "Build a responsive dashboard with React"
-claude-task-plan "Optimize database queries for better performance"
+claude-agent-dispatch "Add JWT authentication to my Express.js API in /src/api/ with login, register, password reset, and email verification features"
 ```
 
-#### Data Analysis
+**📊 Business Intelligence Dashboard**
 ```bash
-claude-task-plan "Analyze user behavior data in /data/user_logs/ directory, generate insights report with retention analysis, conversion funnel, and user segmentation in PDF format"
-claude-task-plan "Create interactive sales dashboard from /data/sales.json with revenue trends, regional performance, and real-time KPI monitoring using Python and Plotly"
+claude-agent-dispatch "Build executive dashboard using /data/quarterly_sales.xlsx showing revenue trends, regional performance, top products, and growth forecasts with interactive Plotly charts"
 ```
 
-#### DevOps & Infrastructure
+**🚀 Production Deployment**
 ```bash
-claude-task-plan "Set up CI/CD pipeline with GitHub Actions"
-claude-task-plan "Deploy application to Kubernetes cluster"
+claude-agent-dispatch "Deploy React app to AWS with S3, CloudFront, auto-scaling, SSL certificates, and CI/CD pipeline using GitHub Actions"
+```
+
+**🐛 Debug Performance Issues**
+```bash
+claude-agent-dispatch "Investigate and fix slow API responses in /src/services/ - analyze bottlenecks, optimize database queries, implement caching, and achieve <200ms response time"
 ```
 
 ## 🔄 Execution Flow
@@ -100,8 +119,8 @@ The tool automatically detects language from your task description (Chinese char
 
 To force a specific language:
 ```bash
-export CLAUDE_TASK_PLAN_LANG=en  # Force English
-export CLAUDE_TASK_PLAN_LANG=zh  # Force Chinese
+export CLAUDE_AGENT_DISPATCH_LANG=en  # Force English
+export CLAUDE_AGENT_DISPATCH_LANG=zh  # Force Chinese
 ```
 
 ### Configuration
@@ -115,13 +134,16 @@ See the [examples](./examples/) directory for detailed use cases:
 
 ## 🤝 Contributing
 
-We welcome contributions! Please see our [Contributing Guide](./docs/CONTRIBUTING.md) for details.
+We welcome contributions! Feel free to:
+- Report bugs and suggest features via [GitHub Issues](https://github.com/your-username/claude-agent-dispatch/issues)
+- Submit pull requests with improvements
+- Share your usage examples and feedback
 
 ### Development Setup
 ```bash
-git clone https://github.com/your-username/claude-task-plan.git
-cd claude-task-plan
-chmod +x bin/claude-task-plan
+git clone https://github.com/your-username/claude-agent-dispatch.git
+cd claude-agent-dispatch
+chmod +x bin/claude-agent-dispatch
 ```
 
 ## 📄 License
@@ -131,9 +153,9 @@ MIT License - see the [LICENSE](./LICENSE) file for details.
 ## 🆘 Support
 
 - 📖 [Documentation](./docs/)
-- 🐛 [Report Issues](https://github.com/your-username/claude-task-plan/issues)
-- 💬 [Discussions](https://github.com/your-username/claude-task-plan/discussions)
-- 🌟 [Star the Project](https://github.com/your-username/claude-task-plan)
+- 🐛 [Report Issues](https://github.com/your-username/claude-agent-dispatch/issues)
+- 💬 [Discussions](https://github.com/your-username/claude-agent-dispatch/discussions)
+- 🌟 [Star the Project](https://github.com/your-username/claude-agent-dispatch)
 
 ## 🏷️ Version
 

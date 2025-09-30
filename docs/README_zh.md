@@ -1,8 +1,8 @@
-# Claude Task Plan
+# Claude Agent Dispatch
 
 [English](../README.md)
 
-一个为 Claude Code CLI 设计的智能任务规划与执行工具，确保任务 100% 按期望完成，成功保障率达 95%。
+专为 Claude Code 设计的命令行 Agent 调度工具，智能选择和协调 Agent 完成任务。通过智能 Agent 编排和严谨工作流管理，将模糊需求转化为成功执行。
 
 ## 🎯 功能特性
 
@@ -14,52 +14,71 @@
 
 ## 📦 安装
 
-### 快速安装 (macOS/Linux)
+**前置要求：** 需要先安装 [Claude Code CLI](https://github.com/anthropics/claude-code)。
 
+### 方式1：快速安装（推荐）
 ```bash
-curl -fsSL https://raw.githubusercontent.com/your-username/claude-task-plan/main/scripts/install.sh | bash
+curl -fsSL https://raw.githubusercontent.com/your-username/claude-agent-dispatch/main/scripts/install.sh | bash
 ```
 
-### 手动安装
-
-1. 克隆仓库：
+### 方式2：手动安装
 ```bash
-git clone https://github.com/your-username/claude-task-plan.git
-cd claude-task-plan
-```
-
-2. 运行安装脚本：
-```bash
+# 克隆并安装
+git clone https://github.com/your-username/claude-agent-dispatch.git
+cd claude-agent-dispatch
 chmod +x scripts/install.sh
 ./scripts/install.sh
 ```
 
+### 方式3：直接下载
+```bash
+# 仅下载脚本文件
+curl -o claude-agent-dispatch https://raw.githubusercontent.com/your-username/claude-agent-dispatch/main/bin/claude-agent-dispatch
+chmod +x claude-agent-dispatch
+sudo mv claude-agent-dispatch /usr/local/bin/
+```
+
+### 验证安装
+```bash
+claude-agent-dispatch --help
+# 应该显示使用说明
+```
+
 ## 🚀 使用方法
 
-### 基本语法
+### 快速开始
 ```bash
-claude-task-plan "任务描述"
+claude-agent-dispatch "任务描述"
 ```
 
-### 使用示例
+Claude将自动：
+1. 📝 **澄清** 你的需求
+2. ✅ **定义** 成功标准
+3. 🔍 **规划** 执行策略
+4. ⚠️ **评估** 潜在风险
+5. 🚀 **执行** 智能调度
+6. ✨ **验证** 完整交付
 
-#### 软件开发
+### 实际应用示例
+
+**🔒 为现有应用添加认证**
 ```bash
-claude-task-plan "实现JWT用户认证功能"
-claude-task-plan "构建React响应式仪表板"
-claude-task-plan "优化数据库查询性能"
+claude-agent-dispatch "为/src/api/目录下的Express.js API添加JWT认证，包含登录、注册、密码重置和邮箱验证功能"
 ```
 
-#### 数据分析
+**📊 商业智能仪表板**
 ```bash
-claude-task-plan "分析/data/user_behavior.csv中的用户行为数据，生成包含用户留存率、转化漏斗、用户画像的洞察报告，输出PDF格式"
-claude-task-plan "基于/data/sales_data目录下的CSV文件创建交互式销售仪表板，包含营收趋势、地区业绩、实时KPI监控，使用Python和Plotly实现"
+claude-agent-dispatch "使用/data/quarterly_sales.xlsx构建高管仪表板，展示营收趋势、地区业绩、热销产品和增长预测，使用交互式Plotly图表"
 ```
 
-#### 运维部署
+**🚀 生产环境部署**
 ```bash
-claude-task-plan "使用GitHub Actions搭建CI/CD流水线"
-claude-task-plan "部署应用到Kubernetes集群"
+claude-agent-dispatch "将React应用部署到AWS，使用S3、CloudFront、自动扩展、SSL证书，并通过GitHub Actions建立CI/CD流水线"
+```
+
+**🐛 调试性能问题**
+```bash
+claude-agent-dispatch "调查并修复/src/services/目录下API响应缓慢问题 - 分析瓶颈、优化数据库查询、实现缓存，达到<200ms响应时间"
 ```
 
 ## 🔄 执行流程
@@ -100,8 +119,8 @@ claude-task-plan "部署应用到Kubernetes集群"
 
 强制指定语言：
 ```bash
-export CLAUDE_TASK_PLAN_LANG=zh  # 强制中文
-export CLAUDE_TASK_PLAN_LANG=en  # 强制英文
+export CLAUDE_AGENT_DISPATCH_LANG=zh  # 强制中文
+export CLAUDE_AGENT_DISPATCH_LANG=en  # 强制英文
 ```
 
 ### 配置
@@ -110,18 +129,21 @@ export CLAUDE_TASK_PLAN_LANG=en  # 强制英文
 ## 📚 示例
 
 查看 [examples](../examples/) 目录了解详细用例：
-- [Web开发](../examples/web-development.md)
+- [Web开发](../examples/web-development_zh.md)
 - [数据分析](../examples/data-analysis_zh.md)
 
 ## 🤝 贡献
 
-欢迎贡献！请查看我们的 [贡献指南](./CONTRIBUTING_zh.md) 了解详情。
+欢迎贡献！你可以：
+- 通过 [GitHub Issues](https://github.com/your-username/claude-agent-dispatch/issues) 报告问题和建议功能
+- 提交改进的拉取请求
+- 分享你的使用示例和反馈
 
 ### 开发环境设置
 ```bash
-git clone https://github.com/your-username/claude-task-plan.git
-cd claude-task-plan
-chmod +x bin/claude-task-plan
+git clone https://github.com/your-username/claude-agent-dispatch.git
+cd claude-agent-dispatch
+chmod +x bin/claude-agent-dispatch
 ```
 
 ## 📄 许可证
@@ -131,9 +153,9 @@ MIT 许可证 - 查看 [LICENSE](../LICENSE) 文件了解详情。
 ## 🆘 支持
 
 - 📖 [文档](../docs/)
-- 🐛 [报告问题](https://github.com/your-username/claude-task-plan/issues)
-- 💬 [讨论](https://github.com/your-username/claude-task-plan/discussions)
-- 🌟 [为项目点星](https://github.com/your-username/claude-task-plan)
+- 🐛 [报告问题](https://github.com/your-username/claude-agent-dispatch/issues)
+- 💬 [讨论](https://github.com/your-username/claude-agent-dispatch/discussions)
+- 🌟 [为项目点星](https://github.com/your-username/claude-agent-dispatch)
 
 ## 🏷️ 版本
 
