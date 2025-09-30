@@ -1,102 +1,133 @@
 # Data Analysis Examples
 
-This document shows how to use `claude-task-plan` for various data analysis tasks with proper data source specification.
+This document shows realistic examples of using `claude-task-plan` for data analysis tasks.
 
-## Example 1: User Behavior Analysis
+## Example 1: E-commerce User Behavior Analysis
 
+### Task Description
 ```bash
-claude-task-plan "Analyze user behavior data in /data/user_logs/ directory containing CSV files with columns: user_id, timestamp, action, page_url. Generate comprehensive insights report with retention analysis, conversion funnel, and user segmentation. Output as PDF with visualizations using Python pandas and matplotlib."
+claude-task-plan "Analyze user behavior data from /data/ecommerce_logs.csv containing columns: user_id, session_id, timestamp, page_url, action_type, product_id, duration_seconds. Generate insights on user journey patterns, conversion funnel analysis, and session abandonment points. Create visualizations and export findings as PDF report with actionable recommendations."
 ```
 
-**Expected Flow:**
-1. **Clarification**: Claude asks about specific analysis goals, time periods, user segments
-2. **Requirements**: Defines success criteria (retention metrics, funnel conversion rates, etc.)
-3. **Solution**: Selects agents (data-scientist, python-pro, data-engineer)
-4. **Risk Assessment**: Identifies data quality issues, missing values handling
-5. **Execution**: Loads data, performs analysis, creates visualizations
-6. **Verification**: Validates statistical significance and business insights
+### What Claude Might Ask (Clarification Phase)
+- "What time period does this data cover?"
+- "Are you looking for any specific user segments (new vs returning users)?"
+- "What constitutes a 'conversion' in your funnel analysis?"
+- "Do you need real-time dashboard or static report?"
+- "What's your preferred visualization tool - Python matplotlib, Plotly, or R ggplot?"
 
-## Example 2: Sales Dashboard Creation
+### Expected Success Criteria
+- ✅ User journey map showing common paths from landing to purchase
+- ✅ Conversion funnel with drop-off rates at each stage
+- ✅ Session abandonment analysis with timing insights
+- ✅ Top performing and underperforming pages identified
+- ✅ 3-5 actionable recommendations for UX improvements
+- ✅ Professional PDF report with clear visualizations
 
+### Likely Agents Used
+- `data-scientist`: Statistical analysis and pattern recognition
+- `python-pro`: Data processing with pandas and numpy
+- `data-engineer`: Data cleaning and validation
+- `business-analyst`: Business insights and recommendations
+
+## Example 2: Sales Performance Dashboard
+
+### Task Description
 ```bash
-claude-task-plan "Create interactive sales dashboard from /data/sales.json with schema {date, region, product, revenue, quantity}. Build real-time KPI monitoring with revenue trends, regional performance comparison, and product analytics. Use Python, Plotly, and Streamlit for web interface."
+claude-task-plan "Create interactive sales dashboard using /data/sales_2024.json with fields: {date, region, salesperson, product_category, revenue, units_sold, customer_segment}. Build real-time metrics showing YTD performance, regional comparisons, top performers, and trending analysis. Deploy as web dashboard accessible to sales team with filters and drill-down capabilities."
 ```
 
-**Key Agents Used:**
-- `data-scientist`: Performs statistical analysis and trend identification
-- `python-pro`: Implements data processing and calculation logic
-- `frontend-developer`: Creates interactive dashboard interface
-- `data-engineer`: Sets up data pipeline and real-time updates
+### What You'll Get
+**Phase 1: Data Exploration**
+- Data quality assessment
+- Missing value analysis
+- Outlier detection and handling
 
-## Example 3: Financial Risk Analysis
+**Phase 2: Dashboard Development**
+- Interactive Plotly/Dash or Streamlit dashboard
+- Key metrics: YTD revenue, growth rates, regional performance
+- Filtering by date range, region, product category
+- Drill-down from regional to individual salesperson level
 
+**Phase 3: Deployment**
+- Web-accessible dashboard with authentication
+- Mobile-responsive design
+- Automated data refresh capabilities
+
+### Business Value
+- Real-time visibility into sales performance
+- Faster identification of trends and opportunities
+- Data-driven sales territory and strategy decisions
+
+## Example 3: Customer Churn Prediction
+
+### Task Description
 ```bash
-claude-task-plan "Analyze financial portfolio data in /data/portfolio.xlsx sheets: stocks, bonds, options. Calculate Value at Risk (VaR), portfolio optimization, correlation analysis. Generate risk assessment report with Monte Carlo simulations using Python scipy and numpy."
+claude-task-plan "Build machine learning model to predict customer churn using /data/customer_data.csv with features: subscription_date, last_login, feature_usage_counts, support_tickets, payment_history, demographics. Achieve >85% accuracy with model interpretability. Include feature importance analysis, risk scoring system, and recommendations for retention strategies."
 ```
 
-**Complex Workflow:**
-- Data validation and cleaning from Excel sheets
-- Statistical modeling and risk calculations
-- Portfolio optimization algorithms
-- Monte Carlo simulation implementation
-- Professional financial report generation
+### Detailed Workflow
+**1. Requirements Clarification**
+- Define churn (30 days inactive? subscription cancellation?)
+- Training data time period and prediction horizon
+- Model performance requirements and constraints
 
-## Example 4: Machine Learning Model Development
+**2. Data Science Process**
+- Exploratory data analysis with correlation matrix
+- Feature engineering (recency, frequency, monetary analysis)
+- Train/validation/test split with temporal considerations
+- Model selection: Logistic Regression, Random Forest, XGBoost comparison
 
+**3. Model Development**
+- Hyperparameter tuning with cross-validation
+- Feature importance analysis and selection
+- Model interpretability with SHAP values
+- Threshold optimization for business metrics
+
+**4. Deployment Strategy**
+- Batch scoring system for monthly risk assessment
+- API endpoint for real-time churn probability
+- Integration with CRM for proactive retention campaigns
+
+## Best Practices for Data Analysis Tasks
+
+### 📊 Task Description Guidelines
+
+**❌ Too Vague:**
 ```bash
-claude-task-plan "Build predictive model using customer data /data/customers.csv with features: age, income, purchase_history, demographics. Predict customer churn probability. Include feature engineering, model selection, hyperparameter tuning, and performance evaluation. Output model artifacts and evaluation report."
+claude-task-plan "Analyze my sales data"
 ```
 
-**Process Highlights:**
-- Exploratory data analysis and feature engineering
-- Model selection and cross-validation
-- Hyperparameter optimization
-- Model interpretability and business insights
-
-## Example 5: Time Series Forecasting
-
+**✅ Specific and Actionable:**
 ```bash
-claude-task-plan "Forecast website traffic using historical data /data/traffic_logs.csv with columns: timestamp, page_views, unique_visitors, bounce_rate. Create 30-day forecast with confidence intervals. Use ARIMA, Prophet, or LSTM models. Generate forecast report with model comparison and recommendations."
+claude-task-plan "Analyze Q4 2024 sales data in /data/sales_q4.xlsx to identify top-performing product categories by region, calculate month-over-month growth rates, and predict Q1 2025 revenue using time series forecasting. Output Excel dashboard with pivot tables and Python script for monthly updates."
 ```
 
-## Data Analysis Best Practices
+### 🎯 Include These Details
 
-### 1. Always Specify Data Sources
-- **File paths**: `/data/filename.csv`, `/path/to/database.db`
-- **Database connections**: Include connection details or config files
-- **API endpoints**: Specify data source APIs with authentication
+1. **Data Location**: Exact file paths, database connections, or API endpoints
+2. **Data Schema**: Key columns and their meanings
+3. **Analysis Goals**: Specific questions to answer or insights to find
+4. **Output Format**: Reports, dashboards, models, or code deliverables
+5. **Technical Preferences**: Python/R, specific libraries, visualization tools
+6. **Business Context**: How results will be used, who the audience is
 
-### 2. Define Data Schema
-- **Column names**: List important columns and their meanings
-- **Data types**: Specify numeric, categorical, datetime fields
-- **Data quality**: Mention known issues or missing values
+### 🚀 Success Indicators
 
-### 3. Specify Analysis Goals
-- **Metrics**: What specific KPIs or insights to generate
-- **Output format**: PDF reports, interactive dashboards, CSV results
-- **Visualization**: Type of charts and graphs needed
+- Data quality issues identified and resolved
+- Statistical significance of findings verified
+- Visualizations are publication-ready
+- Code is documented and reproducible
+- Business recommendations are actionable
+- Results validated against known benchmarks
 
-### 4. Technology Preferences
-- **Tools**: Python/R, pandas/dplyr, matplotlib/ggplot
-- **Infrastructure**: Local processing, cloud platforms, databases
-- **Performance**: Memory requirements, processing time constraints
+## Common Pitfalls to Avoid
 
-## Common Success Criteria
+❌ **Not specifying data location**: "Analyze user data"
+✅ **Specific path**: "Analyze /data/users.csv"
 
-- ✅ Data quality validation and cleaning completed
-- ✅ Statistical significance of findings verified
-- ✅ Visualizations are clear and informative
-- ✅ Business insights are actionable
-- ✅ Reproducible analysis pipeline created
-- ✅ Documentation and code comments provided
+❌ **Unclear success metrics**: "Make it accurate"
+✅ **Measurable goals**: "Achieve >90% precision and >85% recall"
 
-## Error Prevention Tips
-
-❌ **Don't do**: `"Analyze sales data"`
-✅ **Do**: `"Analyze sales data in /data/sales.csv with revenue forecasting"`
-
-❌ **Don't do**: `"Create dashboard"`
-✅ **Do**: `"Create dashboard from /data/metrics.json with real-time updates"`
-
-❌ **Don't do**: `"Build ML model"`
-✅ **Do**: `"Build churn prediction model using /data/customers.csv with accuracy >85%"`
+❌ **Missing business context**: "Find patterns"
+✅ **Clear purpose**: "Identify churn risk factors to reduce customer loss by 15%"
