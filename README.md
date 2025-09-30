@@ -104,12 +104,8 @@ export CLAUDE_TASK_PLAN_LANG=en  # Force English
 export CLAUDE_TASK_PLAN_LANG=zh  # Force Chinese
 ```
 
-### Optional Configuration
-Create a config file at `~/.claude-task-plan/config.yaml` for additional settings:
-```yaml
-# Currently only timeout is supported
-timeout: 7200   # 2 hours in seconds
-```
+### Configuration
+No additional configuration is currently required. The tool works out of the box with intelligent language detection and default settings.
 
 ## 📚 Examples
 

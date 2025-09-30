@@ -104,12 +104,8 @@ export CLAUDE_TASK_PLAN_LANG=zh  # 强制中文
 export CLAUDE_TASK_PLAN_LANG=en  # 强制英文
 ```
 
-### 可选配置
-在 `~/.claude-task-plan/config.yaml` 创建配置文件设置其他选项：
-```yaml
-# 目前仅支持超时设置
-timeout: 7200   # 2小时（秒）
-```
+### 配置
+当前无需额外配置。工具具备智能语言检测功能，开箱即用。
 
 ## 📚 示例
 

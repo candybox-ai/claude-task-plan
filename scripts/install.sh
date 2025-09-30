@@ -95,23 +95,13 @@ install_script() {
     fi
 }
 
-# Create config directory
+# Create config directory (optional for future use)
 create_config() {
     local config_dir="$HOME/.claude-task-plan"
     if [[ ! -d "$config_dir" ]]; then
         mkdir -p "$config_dir"
         print_info "Created config directory: $config_dir"
-    fi
-
-    # Create default config if it doesn't exist
-    local config_file="$config_dir/config.yaml"
-    if [[ ! -f "$config_file" ]]; then
-        cat > "$config_file" << EOF
-# Claude Task Plan Configuration
-# Language is auto-detected from task description or set via CLAUDE_TASK_PLAN_LANG
-timeout: 7200   # 2 hours in seconds
-EOF
-        print_info "Created default config: $config_file"
+        print_info "No configuration files needed - tool works out of the box!"
     fi
 }
 
