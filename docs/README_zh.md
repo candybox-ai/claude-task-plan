@@ -150,13 +150,6 @@ chmod +x bin/claude-agent-dispatch
 
 MIT 许可证 - 查看 [LICENSE](../LICENSE) 文件了解详情。
 
-## 🆘 支持
-
-- 📖 [文档](../docs/)
-- 🐛 [报告问题](https://github.com/candybox-ai/claude-agent-dispatch/issues)
-- 💬 [讨论](https://github.com/candybox-ai/claude-agent-dispatch/discussions)
-- 🌟 [为项目点星](https://github.com/candybox-ai/claude-agent-dispatch)
-
 ## 🏷️ 版本
 
 当前版本：v1.0.0

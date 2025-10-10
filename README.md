@@ -150,13 +150,6 @@ chmod +x bin/claude-agent-dispatch
 
 MIT License - see the [LICENSE](./LICENSE) file for details.
 
-## 🆘 Support
-
-- 📖 [Documentation](./docs/)
-- 🐛 [Report Issues](https://github.com/candybox-ai/claude-agent-dispatch/issues)
-- 💬 [Discussions](https://github.com/candybox-ai/claude-agent-dispatch/discussions)
-- 🌟 [Star the Project](https://github.com/candybox-ai/claude-agent-dispatch)
-
 ## 🏷️ Version
 
 Current Version: v1.0.0
