@@ -1,6 +1,6 @@
 # Claude Agent Dispatch
 
-**简体中文** | [English](../README.md)
+**中文** | [English](../README.md)
 
 专为 Claude Code 设计的命令行 Agent 调度工具，智能选择和协调 Agent 完成任务。通过智能 Agent 编排和严谨工作流管理，将模糊需求转化为成功执行。
 

@@ -1,6 +1,6 @@
 # Claude Agent Dispatch
 
-[简体中文](./docs/README_zh.md) | **English**
+[中文](./docs/README_zh.md) | **English**
 
 A command-line agent dispatch tool for Claude Code that intelligently selects and coordinates agents to complete your tasks. Transform vague requests into successful executions through smart agent orchestration and rigorous workflow management.
 
