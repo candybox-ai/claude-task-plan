@@ -1,0 +1,148 @@
+# Data Analysis Recipe
+# 适用于数据分析、数据可视化、统计建模任务
+
+metadata:
+  name: "Data Analysis"
+  version: "1.0.0"
+  description: "数据分析和可视化任务的通用 Recipe"
+  category: "analysis"
+  tags: ["data", "analysis", "visualization", "statistics", "pandas", "numpy"]
+  author: "claude-agent-dispatch"
+  created_at: "2025-01-11"
+  updated_at: "2025-01-11"
+
+triggers:
+  keywords:
+    - "数据分析"
+    - "data analysis"
+    - "数据"
+    - "data"
+    - "分析"
+    - "analysis"
+    - "pandas"
+    - "numpy"
+    - "matplotlib"
+    - "plotly"
+    - "可视化"
+    - "visualization"
+    - "统计"
+    - "statistics"
+    - "机器学习"
+    - "machine learning"
+    - "jupyter"
+    - "notebook"
+    - "csv"
+    - "excel"
+    - "报告"
+    - "report"
+
+  patterns:
+    - "分析.*数据"
+    - "数据.*分析"
+    - "处理.*csv|excel|json"
+    - "visualiz(e|ation)"
+    - "plot.*chart"
+    - "统计.*分析"
+    - "生成.*报告"
+    - "generate.*report"
+    - "可视化.*报告"
+
+workflow:
+  step_1_clarification:
+    priority_questions:
+      - "📊 数据源在哪里？（CSV/Excel/数据库/API）"
+      - "🎯 分析目标是什么？（探索性分析/特定问题/预测模型）"
+      - "📈 需要什么类型的可视化？（图表类型、交互性）"
+      - "📦 输出格式？（Jupyter Notebook/报告PDF/交互式Dashboard）"
+      - "🔢 数据规模？（行数、列数、文件大小）"
+      - "🧹 数据质量如何？（是否需要清洗、有无缺失值）"
+
+  step_2_criteria:
+    success_criteria:
+      - "数据成功加载并完成初步探索"
+      - "数据清洗和预处理完成"
+      - "核心分析问题得到回答"
+      - "生成清晰易懂的可视化"
+      - "输出可复现的分析流程"
+      - "文档说明完整（数据来源、方法、结论）"
+
+    quality_indicators:
+      - "✅ 代码结构清晰，注释充分"
+      - "✅ 数据处理步骤可追溯"
+      - "✅ 可视化美观且信息量足"
+      - "✅ 统计方法使用正确"
+      - "✅ 结论有数据支撑"
+
+  step_3_assessment:
+    recommended_agents:
+      - name: "data-scientist"
+        priority: 1
+        required: true
+        reason: "数据分析、统计建模、特征工程"
+        conditions: null
+
+      - name: "python-pro"
+        priority: 2
+        required: true
+        reason: "pandas/numpy 数据处理"
+        conditions: null
+
+      - name: "ml-engineer"
+        priority: 3
+        required: false
+        reason: "机器学习模型、预测分析"
+        conditions: ["预测", "模型", "machine learning"]
+
+    tech_stack_recommendations:
+      - "Python 3.10+ with pandas, numpy, matplotlib/plotly"
+      - "Jupyter Notebook for interactive analysis"
+      - "scikit-learn for ML tasks"
+
+  step_4_risks:
+    common_risks:
+      - risk: "数据质量问题"
+        probability: "高"
+        impact: "高"
+        mitigation: "数据验证、缺失值处理、异常值检测"
+
+      - risk: "内存溢出"
+        probability: "中"
+        impact: "中"
+        mitigation: "分批处理、使用 Dask、采样分析"
+
+  step_5_execution:
+    key_milestones:
+      - milestone: "数据加载完成"
+        checkpoint: "数据成功读取且格式正确"
+      - milestone: "探索性分析完成"
+        checkpoint: "理解数据分布和特征"
+      - milestone: "核心分析完成"
+        checkpoint: "关键问题已回答"
+      - milestone: "可视化完成"
+        checkpoint: "生成所需图表"
+
+  step_6_verification:
+    verification_checklist:
+      - "✅ 分析结果可复现"
+      - "✅ 可视化清晰准确"
+      - "✅ 代码可运行"
+      - "✅ 文档完整"
+
+stats:
+  usage_count: 0
+  success_count: 0
+  failure_count: 0
+  success_rate: null
+  avg_satisfaction: null
+  avg_execution_time: null
+  last_used: null
+
+meta:
+  schema_version: "1.0"
+  derived_from: null
+  confidence: 0.80
+  maintainer: "claude-agent-dispatch"
+  license: "MIT"
+  related_recipes:
+    - "ml-modeling.yaml"
+    - "data-pipeline.yaml"

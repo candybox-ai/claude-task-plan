@@ -1,0 +1,410 @@
+# Web Development Recipe
+# 适用于前端、后端、全栈 Web 应用开发任务
+
+metadata:
+  name: "Web Development"
+  version: "2.1.0"
+  description: "通用 Web 应用开发 Recipe，支持 React/Vue/Angular 前端和 Node.js/Python 后端"
+  category: "development"
+  tags: ["web", "frontend", "backend", "fullstack", "api"]
+  author: "claude-agent-dispatch"
+  created_at: "2025-01-11"
+  updated_at: "2025-01-11"
+
+# 触发条件：当任务包含这些关键词或模式时匹配此 Recipe
+triggers:
+  # 精确关键词匹配（不区分大小写）
+  keywords:
+    - "React"
+    - "Vue"
+    - "Angular"
+    - "Svelte"
+    - "Next.js"
+    - "Nuxt"
+    - "Express"
+    - "FastAPI"
+    - "Django"
+    - "Flask"
+    - "API"
+    - "REST"
+    - "GraphQL"
+    - "前端"
+    - "后端"
+    - "全栈"
+    - "网站"
+    - "Web应用"
+    - "单页应用"
+    - "SPA"
+
+  # 正则表达式模式
+  patterns:
+    - "构建.*网站"
+    - "构建.*应用"
+    - "开发.*应用"
+    - "实现.*功能"
+    - "build.*app"
+    - "develop.*website"
+    - "create.*dashboard"
+    - "待办.*应用"
+    - "todo.*app"
+
+# 工作流增强：针对基础 6 步骤的优化指令
+workflow:
+
+  # 步骤 1: 需求澄清阶段
+  step_1_clarification:
+    priority_questions:
+      - "🎨 前端框架偏好？（React/Vue/Angular/其他）"
+      - "🖥️  是否需要后端 API？如果需要，使用什么技术栈？"
+      - "📱 目标平台？（桌面浏览器/移动端/两者）"
+      - "🎯 关键功能优先级排序？"
+      - "🔐 是否需要用户认证？（JWT/OAuth/Session）"
+      - "💾 数据存储需求？（数据库类型、数据模型）"
+      - "🚀 部署目标？（Vercel/Netlify/AWS/自托管）"
+
+    tech_stack_discovery:
+      - "现有代码库位置？"
+      - "是否有设计稿或原型？"
+      - "API 文档或数据结构说明？"
+
+    constraints:
+      - "浏览器兼容性要求？"
+      - "性能指标要求？（Lighthouse 分数、加载时间）"
+      - "预算或时间限制？"
+
+  # 步骤 2: 需求确认与成功标准定义
+  step_2_criteria:
+    success_criteria:
+      functional:
+        - "所有指定功能正常工作且通过测试"
+        - "用户流程完整且符合预期"
+        - "错误处理和边界情况覆盖"
+
+      technical:
+        - "代码符合团队/社区最佳实践"
+        - "适当的代码注释和文档"
+        - "类型安全（如使用 TypeScript）"
+
+      performance:
+        - "首次内容绘制 (FCP) < 1.8s"
+        - "最大内容绘制 (LCP) < 2.5s"
+        - "累积布局偏移 (CLS) < 0.1"
+        - "首次输入延迟 (FID) < 100ms"
+        - "Lighthouse Performance 分数 > 90"
+
+      quality:
+        - "无严重安全漏洞（npm audit / pip check）"
+        - "无 ESLint/Prettier 错误"
+        - "测试覆盖率 > 70%（关键路径 100%）"
+
+      ux:
+        - "响应式设计，支持移动端和桌面端"
+        - "Loading 状态和错误提示清晰"
+        - "符合 WCAG 2.1 AA 无障碍标准"
+
+    quality_indicators:
+      - "✅ 代码可读性和可维护性"
+      - "✅ 适当的组件/模块划分"
+      - "✅ 状态管理清晰合理"
+      - "✅ API 设计符合 RESTful 或 GraphQL 规范"
+
+    boundary_conditions:
+      - "大数据量处理（分页、虚拟滚动）"
+      - "网络异常和离线场景"
+      - "并发用户和竞态条件"
+      - "浏览器差异和 Polyfill"
+
+  # 步骤 3: 可行性评估与方案制定
+  step_3_assessment:
+    recommended_agents:
+      - name: "frontend-developer"
+        priority: 1
+        required: true
+        reason: "前端组件开发、UI 实现、状态管理"
+        conditions: null
+
+      - name: "backend-architect"
+        priority: 2
+        required: false
+        reason: "API 设计、数据库架构、业务逻辑"
+        conditions: ["需要后端", "API", "数据库"]
+
+      - name: "typescript-pro"
+        priority: 3
+        required: false
+        reason: "类型定义、类型安全、复杂类型系统"
+        conditions: ["TypeScript", "类型安全"]
+
+      - name: "security-auditor"
+        priority: 4
+        required: true
+        reason: "安全审计、漏洞扫描、认证授权"
+        conditions: null
+
+      - name: "performance-engineer"
+        priority: 5
+        required: false
+        reason: "性能优化、Bundle 分析、渲染优化"
+        conditions: ["性能要求", "优化", "慢"]
+
+      - name: "test-automator"
+        priority: 6
+        required: false
+        reason: "单元测试、集成测试、E2E 测试"
+        conditions: ["测试", "test", "质量保证"]
+
+      - name: "deployment-engineer"
+        priority: 7
+        required: false
+        reason: "CI/CD 配置、部署脚本、环境配置"
+        conditions: ["部署", "deploy", "上线"]
+
+    tech_stack_recommendations:
+      frontend:
+        primary:
+          - framework: "React 18+"
+            reason: "生态成熟、性能优秀、社区活跃"
+            when: "复杂交互、大型应用"
+          - framework: "Next.js 14+"
+            reason: "SSR/SSG、SEO 友好、全栈能力"
+            when: "需要 SEO、服务端渲染"
+
+        state_management:
+          - tool: "Zustand"
+            reason: "轻量、简单、TypeScript 友好"
+            when: "中小型应用"
+          - tool: "Redux Toolkit"
+            reason: "可预测、调试工具完善"
+            when: "大型应用、复杂状态"
+
+        styling:
+          - tool: "Tailwind CSS"
+            reason: "快速开发、一致性好、体积小"
+            when: "快速原型、现代设计"
+          - tool: "CSS Modules"
+            reason: "作用域隔离、组件化"
+            when: "需要样式隔离"
+
+        testing:
+          - tool: "Vitest + Testing Library"
+            reason: "快速、现代、与 Vite 集成"
+
+      backend:
+        api:
+          - framework: "Express.js"
+            reason: "灵活、生态丰富"
+            when: "Node.js 后端"
+          - framework: "FastAPI"
+            reason: "高性能、自动文档、类型提示"
+            when: "Python 后端"
+
+        database:
+          - db: "PostgreSQL"
+            reason: "功能强大、ACID、扩展性好"
+            when: "关系型数据"
+          - db: "MongoDB"
+            reason: "灵活 schema、易扩展"
+            when: "文档型数据、快速迭代"
+
+        auth:
+          - solution: "JWT + HTTP-only Cookie"
+            reason: "无状态、安全、易扩展"
+
+    parallel_execution_strategy:
+      phase_1:
+        - "前端项目脚手架搭建"
+        - "后端 API 框架初始化"
+        - "数据库 Schema 设计"
+
+      phase_2:
+        - "前端组件开发（并行多个组件）"
+        - "后端 API 端点开发"
+
+      phase_3:
+        - "前后端集成测试"
+        - "性能优化"
+        - "安全审计"
+
+      phase_4:
+        - "部署配置"
+        - "文档完善"
+
+  # 步骤 4: 方案确认与风险评估
+  step_4_risks:
+    common_risks:
+      - risk: "CORS 跨域问题"
+        probability: "高"
+        impact: "中"
+        mitigation: "开发环境配置代理、生产环境正确配置 CORS 头"
+        detection: "前端请求失败、浏览器控制台 CORS 错误"
+
+      - risk: "状态管理复杂度失控"
+        probability: "中"
+        impact: "高"
+        mitigation: "提前设计状态结构、使用状态管理工具、保持单一数据源"
+        detection: "状态更新不一致、组件重渲染过多"
+
+      - risk: "Bundle 体积过大"
+        probability: "中"
+        impact: "中"
+        mitigation: "代码分割、懒加载、Tree Shaking、依赖审计"
+        detection: "首次加载时间长、Lighthouse 性能分数低"
+
+      - risk: "SQL 注入和 XSS 攻击"
+        probability: "中"
+        impact: "严重"
+        mitigation: "使用 ORM/参数化查询、输出转义、CSP 策略"
+        detection: "安全审计工具报警"
+
+      - risk: "API 性能瓶颈"
+        probability: "中"
+        impact: "高"
+        mitigation: "数据库索引优化、缓存策略、分页/限流"
+        detection: "响应时间长、高负载下超时"
+
+      - risk: "浏览器兼容性问题"
+        probability: "低"
+        impact: "中"
+        mitigation: "使用 Babel/PostCSS、Polyfills、测试多浏览器"
+        detection: "特定浏览器功能异常"
+
+    technical_debt_prevention:
+      - "定期代码审查和重构"
+      - "保持依赖版本更新"
+      - "技术文档同步更新"
+      - "测试覆盖率监控"
+
+    backup_plan:
+      - scenario: "主要技术栈不可用"
+        alternative: "使用备选框架（如 React → Vue）"
+      - scenario: "性能无法达标"
+        alternative: "SSR 转 SSG、引入 CDN、服务端缓存"
+      - scenario: "Agent 不可用"
+        alternative: "使用通用 Agent + 详细技术指导"
+
+  # 步骤 5: 执行监控
+  step_5_execution:
+    key_milestones:
+      - milestone: "项目结构搭建完成"
+        checkpoint: "能够启动开发服务器、无构建错误"
+      - milestone: "核心功能实现"
+        checkpoint: "主要用户流程可演示"
+      - milestone: "测试通过"
+        checkpoint: "单元测试和集成测试全部通过"
+      - milestone: "性能达标"
+        checkpoint: "Lighthouse 分数满足要求"
+      - milestone: "安全审计通过"
+        checkpoint: "无严重或高危漏洞"
+
+    progress_indicators:
+      - "各 Agent 任务完成状态"
+      - "测试通过率"
+      - "已完成功能 vs 计划功能"
+      - "性能指标实时数据"
+
+    exception_handling:
+      - "构建失败：检查依赖版本、配置文件"
+      - "测试失败：分析失败原因、修复或更新测试"
+      - "性能不达标：使用性能分析工具定位瓶颈"
+      - "安全漏洞：更新依赖、修复代码、重新审计"
+
+  # 步骤 6: 交付验证
+  step_6_verification:
+    verification_checklist:
+      functionality:
+        - "✅ 所有需求功能已实现"
+        - "✅ 用户流程完整且符合预期"
+        - "✅ 错误处理完善"
+        - "✅ 边界情况已测试"
+
+      code_quality:
+        - "✅ 代码符合项目规范"
+        - "✅ 无 Linter 错误"
+        - "✅ 适当的注释和文档"
+        - "✅ 代码可读性良好"
+
+      testing:
+        - "✅ 单元测试通过"
+        - "✅ 集成测试通过"
+        - "✅ E2E 测试通过（如有）"
+        - "✅ 测试覆盖率达标"
+
+      performance:
+        - "✅ Lighthouse Performance > 90"
+        - "✅ 首屏加载时间 < 2s"
+        - "✅ Bundle 体积合理"
+        - "✅ 无明显性能瓶颈"
+
+      security:
+        - "✅ npm audit / pip check 无严重漏洞"
+        - "✅ OWASP Top 10 检查通过"
+        - "✅ 敏感数据已保护"
+        - "✅ 认证授权正确实现"
+
+      accessibility:
+        - "✅ 键盘导航可用"
+        - "✅ 屏幕阅读器兼容"
+        - "✅ 颜色对比度符合 WCAG 2.1"
+        - "✅ ARIA 标签适当使用"
+
+      deployment:
+        - "✅ 环境变量配置正确"
+        - "✅ 构建产物正常"
+        - "✅ 部署流程文档完整"
+        - "✅ 回滚方案已准备"
+
+    quality_gates:
+      - gate: "代码质量"
+        threshold: "无严重 Linter 错误、测试覆盖率 > 70%"
+      - gate: "性能"
+        threshold: "Lighthouse > 90、LCP < 2.5s"
+      - gate: "安全"
+        threshold: "无高危漏洞"
+
+    documentation_requirements:
+      - "README.md 包含项目说明、安装步骤、使用方法"
+      - "API 文档（如有后端）"
+      - "组件文档（如有组件库）"
+      - "部署文档"
+      - "故障排查指南"
+
+    delivery_format:
+      - "源代码仓库（Git）"
+      - "构建产物（如需要）"
+      - "环境配置示例（.env.example）"
+      - "完整文档"
+
+# 统计数据（由系统自动更新）
+stats:
+  usage_count: 0
+  success_count: 0
+  failure_count: 0
+  success_rate: null
+  avg_satisfaction: null
+  avg_execution_time: null
+  last_used: null
+  total_feedback: 0
+
+# 进化历史（系统自动记录）
+evolution_history:
+  - version: "1.0.0"
+    date: "2025-01-11"
+    changes: "初始版本"
+  - version: "2.0.0"
+    date: "2025-01-11"
+    changes: "增加详细的风险评估和性能指标"
+  - version: "2.1.0"
+    date: "2025-01-11"
+    changes: "优化 Agent 推荐逻辑，增加并行执行策略"
+
+# 元数据
+meta:
+  schema_version: "1.0"
+  derived_from: null
+  confidence: 0.85
+  maintainer: "claude-agent-dispatch"
+  license: "MIT"
+  related_recipes:
+    - "react-spa.yaml"
+    - "api-development.yaml"
+    - "deployment.yaml"

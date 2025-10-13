@@ -1,0 +1,145 @@
+# Claude Agent Dispatch 配置文件
+# ~/.claude-agent-dispatch/config/settings.yaml
+
+# Agent 管理配置
+agents:
+  # 是否自动安装推荐的 Agents（false=询问用户，true=自动安装）
+  auto_install: false
+
+  # Agent 安装超时时间（秒）
+  install_timeout: 300
+
+  # 检查官方 Agent 仓库更新的频率
+  # 可选值: "never" | "daily" | "weekly" | "monthly"
+  update_check: "weekly"
+
+  # Agent 搜索配置
+  search:
+    enabled: true
+
+    # 搜索范围
+    scope:
+      - official        # 官方 Agent 仓库（~/.claude/agents/）
+      - community       # 精选社区列表
+      - github          # GitHub 搜索
+      - awesome_lists   # Awesome lists
+
+    # 触发全网搜索的条件
+    triggers:
+      - local_not_found           # 本地找不到匹配的 Agent
+      - recipe_confidence_low     # Recipe 置信度低于阈值
+      - user_explicit             # 用户明确要求搜索
+      - success_rate_low          # 历史成功率 < 50%
+
+# Recipe 进化配置
+evolution:
+  # 进化模式: conservative（保守）| balanced（平衡）| aggressive（激进）
+  mode: "aggressive"
+
+  # 自动生成 Recipe 的条件
+  auto_generate:
+    enabled: true
+    min_satisfaction: 4           # 满意度 >= 4/5 才生成
+    require_success: true          # 必须执行成功
+
+  # Recipe 优化配置
+  optimization:
+    min_usage: 5                  # 至少使用 5 次才进行优化
+    merge_similar: true           # 自动合并相似的 Recipes
+    archive_unused: true          # 归档长期未使用的 Recipes
+    archive_threshold: "90d"      # 90 天未使用则归档
+
+  # 知识学习配置
+  learning:
+    track_agent_combinations: true    # 跟踪 Agent 组合效果
+    track_failure_patterns: true      # 跟踪失败模式
+    track_execution_time: true        # 跟踪执行时间
+    track_user_satisfaction: true     # 跟踪用户满意度
+
+# Recipe 匹配配置
+matching:
+  # 匹配算法: keyword（关键词）| semantic（语义）| hybrid（混合）
+  algorithm: "hybrid"
+
+  # Recipe 匹配置信度阈值（0.0-1.0）
+  confidence_threshold: 0.6
+
+  # 显示备选 Recipe 数量
+  show_alternatives: 3
+
+  # 高价值任务判断阈值（用于决定是否调用 Claude 做语义匹配）
+  high_value_threshold:
+    keyword_score: 3              # 关键词得分 >= 3 视为高价值
+
+# 隐私与数据共享
+privacy:
+  # 仅本地存储所有数据（不连接任何远程服务）
+  local_only: false
+
+  # 是否贡献匿名使用数据（帮助改进系统）
+  anonymous_telemetry: false
+
+  # 是否分享成功的 Recipes 到社区
+  share_recipes: false
+
+# 用户交互配置
+interaction:
+  # 输出详细程度: quiet（安静）| normal（正常）| verbose（详细）
+  verbosity: "normal"
+
+  # 执行前是否确认
+  confirm_before_execute: false
+
+  # 是否显示进化洞察信息
+  show_evolution_insights: true
+
+  # 反馈收集方式: immediate（立即）| delayed（延迟）| optional（可选）
+  feedback_mode: "delayed"
+
+  # 反馈提示超时时间（秒），超时后自动选择延迟反馈
+  feedback_prompt_timeout: 10
+
+# 性能配置
+performance:
+  # 数据库迁移阈值（记录数）
+  sqlite_migration_threshold: 1000
+
+  # 缓存配置
+  cache:
+    enabled: true
+    ttl: 3600                     # 缓存过期时间（秒）
+    max_size_mb: 100              # 最大缓存大小（MB）
+
+# 日志配置
+logging:
+  # 是否启用详细日志
+  enabled: true
+
+  # 日志保留时间
+  retention:
+    executions: "90d"             # 执行日志保留 90 天
+    evolution: "365d"             # 进化日志保留 1 年
+
+  # 自动清理旧日志
+  auto_cleanup: true
+
+# 通知配置（可选，未来扩展）
+notifications:
+  enabled: false
+  # channels: ["terminal", "email", "slack"]
+
+# 高级配置
+advanced:
+  # Recipe 生成重试次数
+  recipe_generation_retries: 3
+
+  # Claude 调用超时时间（秒）
+  claude_timeout: 300
+
+  # 并行执行的最大 Agent 数量
+  max_parallel_agents: 3
+
+  # 实验性功能开关
+  experimental:
+    semantic_search: false        # 语义搜索（需要额外依赖）
+    auto_optimization: false      # 完全自动优化（无需用户确认）

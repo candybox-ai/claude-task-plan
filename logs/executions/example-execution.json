@@ -1,0 +1,144 @@
+{
+  "execution_id": "550e8400-e29b-41d4-a716-446655440000",
+  "timestamp": "2025-01-11T10:30:00Z",
+  "task": "构建一个 React + Express 的全栈博客系统，包含用户认证、文章CRUD、评论功能",
+  "task_fingerprint": "fc3a4b2d8e1f9c7a",
+  "matched_recipe": "web-development.yaml",
+  "recipe_version": "2.1.0",
+  "recipe_confidence": 0.92,
+
+  "agents_used": [
+    {
+      "name": "frontend-developer",
+      "start_time": "2025-01-11T10:31:00Z",
+      "end_time": "2025-01-11T10:55:00Z",
+      "duration": "24min",
+      "status": "success"
+    },
+    {
+      "name": "backend-architect",
+      "start_time": "2025-01-11T10:31:30Z",
+      "end_time": "2025-01-11T10:52:00Z",
+      "duration": "20.5min",
+      "status": "success"
+    },
+    {
+      "name": "security-auditor",
+      "start_time": "2025-01-11T10:56:00Z",
+      "end_time": "2025-01-11T11:05:00Z",
+      "duration": "9min",
+      "status": "success"
+    },
+    {
+      "name": "test-automator",
+      "start_time": "2025-01-11T11:06:00Z",
+      "end_time": "2025-01-11T11:15:00Z",
+      "duration": "9min",
+      "status": "success"
+    }
+  ],
+
+  "tech_stack": [
+    "React",
+    "TypeScript",
+    "Tailwind CSS",
+    "Express.js",
+    "PostgreSQL",
+    "JWT",
+    "Vitest"
+  ],
+
+  "steps": [
+    {
+      "step": 1,
+      "name": "需求澄清",
+      "status": "completed",
+      "duration": "3min",
+      "notes": "确认了技术栈、认证方式、数据库schema"
+    },
+    {
+      "step": 2,
+      "name": "需求确认与成功标准",
+      "status": "completed",
+      "duration": "2min",
+      "notes": "定义了功能完整性、性能指标、安全要求"
+    },
+    {
+      "step": 3,
+      "name": "可行性评估",
+      "status": "completed",
+      "duration": "5min",
+      "notes": "选择了4个Agents，制定了并行执行策略"
+    },
+    {
+      "step": 4,
+      "name": "方案确认与风险评估",
+      "status": "completed",
+      "duration": "4min",
+      "notes": "识别了CORS、SQL注入、XSS等风险点"
+    },
+    {
+      "step": 5,
+      "name": "执行监控",
+      "status": "completed",
+      "duration": "62.5min",
+      "notes": "前后端并行开发，定期同步进度"
+    },
+    {
+      "step": 6,
+      "name": "交付验证",
+      "status": "completed",
+      "duration": "8.5min",
+      "notes": "所有测试通过，Lighthouse 93分，无安全漏洞"
+    }
+  ],
+
+  "execution_time": "85min",
+  "actual_duration_seconds": 5100,
+
+  "metrics": {
+    "lighthouse_score": 93,
+    "test_coverage": 0.82,
+    "security_vulnerabilities": {
+      "critical": 0,
+      "high": 0,
+      "medium": 0,
+      "low": 2
+    },
+    "bundle_size_kb": 245,
+    "first_contentful_paint_ms": 1200,
+    "largest_contentful_paint_ms": 2100
+  },
+
+  "success": true,
+  "satisfaction": 5,
+  "feedback": {
+    "provided_at": "2025-01-11T12:00:00Z",
+    "mode": "immediate",
+    "satisfaction": 5,
+    "success": true,
+    "notes": "非常满意，代码质量高，文档完善",
+    "would_recommend_recipe": true
+  },
+
+  "files_modified": 47,
+  "lines_added": 3240,
+  "lines_removed": 12,
+
+  "environment": {
+    "os": "darwin",
+    "shell": "zsh",
+    "claude_version": "1.5.0",
+    "node_version": "20.10.0",
+    "python_version": null
+  },
+
+  "log_file": "/Users/user/.claude-agent-dispatch/logs/executions/550e8400-raw.log",
+
+  "evolution_contribution": {
+    "new_recipe_generated": false,
+    "recipe_updated": true,
+    "agent_combination_recorded": true,
+    "success_pattern_added": true
+  }
+}

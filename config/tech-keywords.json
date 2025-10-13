@@ -1,0 +1,158 @@
+[
+  {
+    "name": "React",
+    "pattern": "\\breact\\b",
+    "category": "frontend-framework",
+    "related": ["jsx", "hooks", "components"]
+  },
+  {
+    "name": "Vue",
+    "pattern": "\\bvue(\\.[jt]s)?\\b",
+    "category": "frontend-framework",
+    "related": ["composition-api", "vuex", "pinia"]
+  },
+  {
+    "name": "Angular",
+    "pattern": "\\bangular\\b",
+    "category": "frontend-framework",
+    "related": ["typescript", "rxjs", "ngrx"]
+  },
+  {
+    "name": "Next.js",
+    "pattern": "next(\\.js)?",
+    "category": "fullstack-framework",
+    "related": ["react", "ssr", "ssg"]
+  },
+  {
+    "name": "Node.js",
+    "pattern": "node(\\.js)?",
+    "category": "runtime",
+    "related": ["javascript", "npm", "express"]
+  },
+  {
+    "name": "Express",
+    "pattern": "express(\\.js)?",
+    "category": "backend-framework",
+    "related": ["node.js", "middleware", "rest-api"]
+  },
+  {
+    "name": "FastAPI",
+    "pattern": "fastapi",
+    "category": "backend-framework",
+    "related": ["python", "async", "rest-api"]
+  },
+  {
+    "name": "Django",
+    "pattern": "\\bdjango\\b",
+    "category": "backend-framework",
+    "related": ["python", "orm", "mvc"]
+  },
+  {
+    "name": "TypeScript",
+    "pattern": "typescript|\\b\\.ts\\b",
+    "category": "language",
+    "related": ["javascript", "types", "interfaces"]
+  },
+  {
+    "name": "Python",
+    "pattern": "\\bpython\\b",
+    "category": "language",
+    "related": ["pip", "venv", "asyncio"]
+  },
+  {
+    "name": "PostgreSQL",
+    "pattern": "postgres(ql)?",
+    "category": "database",
+    "related": ["sql", "rdbms", "acid"]
+  },
+  {
+    "name": "MongoDB",
+    "pattern": "\\bmongo(db)?\\b",
+    "category": "database",
+    "related": ["nosql", "document", "json"]
+  },
+  {
+    "name": "Redis",
+    "pattern": "\\bredis\\b",
+    "category": "cache",
+    "related": ["cache", "pub-sub", "key-value"]
+  },
+  {
+    "name": "Docker",
+    "pattern": "\\bdocker\\b",
+    "category": "devops",
+    "related": ["container", "dockerfile", "compose"]
+  },
+  {
+    "name": "Kubernetes",
+    "pattern": "kubernetes|\\bk8s\\b",
+    "category": "devops",
+    "related": ["container", "orchestration", "pods"]
+  },
+  {
+    "name": "AWS",
+    "pattern": "\\baws\\b|amazon web services",
+    "category": "cloud",
+    "related": ["s3", "ec2", "lambda"]
+  },
+  {
+    "name": "GraphQL",
+    "pattern": "graphql",
+    "category": "api",
+    "related": ["apollo", "schema", "resolver"]
+  },
+  {
+    "name": "REST",
+    "pattern": "\\brest(ful)?\\s*(api)?\\b",
+    "category": "api",
+    "related": ["http", "json", "crud"]
+  },
+  {
+    "name": "JWT",
+    "pattern": "\\bjwt\\b|json web token",
+    "category": "auth",
+    "related": ["authentication", "token", "bearer"]
+  },
+  {
+    "name": "OAuth",
+    "pattern": "oauth",
+    "category": "auth",
+    "related": ["authentication", "authorization", "sso"]
+  },
+  {
+    "name": "Tailwind CSS",
+    "pattern": "tailwind(\\s*css)?",
+    "category": "styling",
+    "related": ["utility-first", "css", "responsive"]
+  },
+  {
+    "name": "Webpack",
+    "pattern": "\\bwebpack\\b",
+    "category": "build-tool",
+    "related": ["bundler", "loader", "plugin"]
+  },
+  {
+    "name": "Vite",
+    "pattern": "\\bvite\\b",
+    "category": "build-tool",
+    "related": ["esm", "dev-server", "fast"]
+  },
+  {
+    "name": "Jest",
+    "pattern": "\\bjest\\b",
+    "category": "testing",
+    "related": ["unit-test", "mock", "coverage"]
+  },
+  {
+    "name": "Vitest",
+    "pattern": "\\bvitest\\b",
+    "category": "testing",
+    "related": ["unit-test", "vite", "fast"]
+  },
+  {
+    "name": "Cypress",
+    "pattern": "\\bcypress\\b",
+    "category": "testing",
+    "related": ["e2e", "integration", "ui-test"]
+  }
+]

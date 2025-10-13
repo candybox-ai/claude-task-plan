@@ -1,0 +1,81 @@
+# Basic Recipe Template
+# 用于快速创建新 Recipe 的基础模板
+
+metadata:
+  name: "Task Name"
+  version: "1.0.0"
+  description: "简短描述此 Recipe 的用途"
+  category: "general"
+  tags: []
+  author: "claude-agent-dispatch"
+  created_at: "YYYY-MM-DD"
+  updated_at: "YYYY-MM-DD"
+
+# 触发条件
+triggers:
+  keywords:
+    - "关键词1"
+    - "关键词2"
+
+  patterns:
+    - "正则表达式模式"
+
+# 工作流增强
+workflow:
+  step_1_clarification:
+    priority_questions:
+      - "问题1？"
+      - "问题2？"
+
+  step_2_criteria:
+    success_criteria:
+      - "标准1"
+      - "标准2"
+
+    quality_indicators:
+      - "✅ 指标1"
+      - "✅ 指标2"
+
+  step_3_assessment:
+    recommended_agents:
+      - name: "agent-name"
+        priority: 1
+        required: true
+        reason: "原因说明"
+        conditions: null
+
+  step_4_risks:
+    common_risks:
+      - risk: "风险描述"
+        probability: "高/中/低"
+        impact: "严重/高/中/低"
+        mitigation: "缓解措施"
+        detection: "如何检测"
+
+  step_5_execution:
+    key_milestones:
+      - milestone: "里程碑名称"
+        checkpoint: "检查点描述"
+
+  step_6_verification:
+    verification_checklist:
+      - "✅ 验证项1"
+      - "✅ 验证项2"
+
+# 统计数据（系统自动更新）
+stats:
+  usage_count: 0
+  success_count: 0
+  failure_count: 0
+  success_rate: null
+  avg_satisfaction: null
+  avg_execution_time: null
+  last_used: null
+
+# 元数据
+meta:
+  schema_version: "1.0"
+  derived_from: null
+  confidence: 0.5
+  maintainer: "claude-agent-dispatch"
+  license: "MIT"

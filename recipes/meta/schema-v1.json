@@ -1,0 +1,214 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://claude-agent-dispatch.com/schemas/recipe-v1.json",
+  "title": "Recipe Schema",
+  "description": "Schema definition for claude-agent-dispatch Recipe files",
+  "type": "object",
+  "required": ["metadata", "triggers", "workflow", "stats", "meta"],
+  "properties": {
+    "metadata": {
+      "type": "object",
+      "required": ["name", "version", "description"],
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "Recipe 名称"
+        },
+        "version": {
+          "type": "string",
+          "pattern": "^\\d+\\.\\d+\\.\\d+$",
+          "description": "语义化版本号"
+        },
+        "description": {
+          "type": "string",
+          "description": "Recipe 描述"
+        },
+        "category": {
+          "type": "string",
+          "enum": ["development", "deployment", "testing", "analysis", "general"],
+          "description": "Recipe 分类"
+        },
+        "tags": {
+          "type": "array",
+          "items": {"type": "string"},
+          "description": "标签列表"
+        },
+        "author": {
+          "type": "string",
+          "description": "作者"
+        },
+        "created_at": {
+          "type": "string",
+          "format": "date",
+          "description": "创建日期 (YYYY-MM-DD)"
+        },
+        "updated_at": {
+          "type": "string",
+          "format": "date",
+          "description": "更新日期 (YYYY-MM-DD)"
+        }
+      }
+    },
+    "triggers": {
+      "type": "object",
+      "properties": {
+        "keywords": {
+          "type": "array",
+          "items": {"type": "string"},
+          "description": "触发关键词列表"
+        },
+        "patterns": {
+          "type": "array",
+          "items": {"type": "string"},
+          "description": "正则表达式模式列表"
+        }
+      }
+    },
+    "workflow": {
+      "type": "object",
+      "properties": {
+        "step_1_clarification": {
+          "type": "object",
+          "description": "需求澄清阶段配置"
+        },
+        "step_2_criteria": {
+          "type": "object",
+          "description": "成功标准定义配置"
+        },
+        "step_3_assessment": {
+          "type": "object",
+          "properties": {
+            "recommended_agents": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "required": ["name", "priority", "required", "reason"],
+                "properties": {
+                  "name": {"type": "string"},
+                  "priority": {"type": "integer", "minimum": 1},
+                  "required": {"type": "boolean"},
+                  "reason": {"type": "string"},
+                  "conditions": {
+                    "oneOf": [
+                      {"type": "null"},
+                      {"type": "array", "items": {"type": "string"}}
+                    ]
+                  }
+                }
+              }
+            }
+          }
+        },
+        "step_4_risks": {
+          "type": "object",
+          "description": "风险评估配置"
+        },
+        "step_5_execution": {
+          "type": "object",
+          "description": "执行监控配置"
+        },
+        "step_6_verification": {
+          "type": "object",
+          "description": "交付验证配置"
+        }
+      }
+    },
+    "stats": {
+      "type": "object",
+      "required": ["usage_count", "success_count", "failure_count"],
+      "properties": {
+        "usage_count": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "使用次数"
+        },
+        "success_count": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "成功次数"
+        },
+        "failure_count": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "失败次数"
+        },
+        "success_rate": {
+          "oneOf": [
+            {"type": "null"},
+            {"type": "number", "minimum": 0, "maximum": 1}
+          ],
+          "description": "成功率 (0.0-1.0)"
+        },
+        "avg_satisfaction": {
+          "oneOf": [
+            {"type": "null"},
+            {"type": "number", "minimum": 1, "maximum": 5}
+          ],
+          "description": "平均满意度 (1-5)"
+        },
+        "avg_execution_time": {
+          "oneOf": [
+            {"type": "null"},
+            {"type": "string"}
+          ],
+          "description": "平均执行时间"
+        },
+        "last_used": {
+          "oneOf": [
+            {"type": "null"},
+            {"type": "string", "format": "date-time"}
+          ],
+          "description": "最后使用时间"
+        }
+      }
+    },
+    "meta": {
+      "type": "object",
+      "required": ["schema_version"],
+      "properties": {
+        "schema_version": {
+          "type": "string",
+          "description": "Schema 版本"
+        },
+        "derived_from": {
+          "oneOf": [
+            {"type": "null"},
+            {"type": "string"}
+          ],
+          "description": "派生自哪个 Recipe"
+        },
+        "confidence": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1,
+          "description": "置信度 (0.0-1.0)"
+        },
+        "maintainer": {
+          "type": "string",
+          "description": "维护者"
+        },
+        "license": {
+          "type": "string",
+          "description": "许可证"
+        },
+        "related_recipes": {
+          "type": "array",
+          "items": {"type": "string"},
+          "description": "相关 Recipe 列表"
+        }
+      }
+    },
+    "evolution_history": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "version": {"type": "string"},
+          "date": {"type": "string", "format": "date"},
+          "changes": {"type": "string"}
+        }
+      },
+      "description": "进化历史记录"
+    }
+  }
+}
