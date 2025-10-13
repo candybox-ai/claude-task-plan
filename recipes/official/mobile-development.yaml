@@ -1,0 +1,373 @@
+# Mobile Development Recipe
+# 适用于移动应用开发任务（iOS/Android/跨平台）
+
+metadata:
+  name: "Mobile Development"
+  version: "1.0.0"
+  description: "移动应用开发专用 Recipe，支持原生和跨平台开发"
+  category: "mobile"
+  tags: ["mobile", "ios", "android", "react-native", "flutter", "app"]
+  author: "claude-agent-dispatch"
+  created_at: "2025-10-13"
+  updated_at: "2025-10-13"
+
+# 触发条件
+triggers:
+  keywords:
+    - "mobile"
+    - "移动"
+    - "app"
+    - "应用"
+    - "iOS"
+    - "Android"
+    - "React Native"
+    - "Flutter"
+    - "跨平台"
+    - "cross-platform"
+
+  patterns:
+    - "开发.*app"
+    - "构建.*移动应用"
+    - "实现.*iOS"
+    - "develop.*mobile"
+    - "build.*app"
+    - "create.*android"
+
+# 工作流增强
+workflow:
+  step_1_clarification:
+    priority_questions:
+      - "📱 目标平台？（iOS/Android/Both）"
+      - "🔧 技术选型？（原生/React Native/Flutter）"
+      - "🎨 UI 框架？（SwiftUI/UIKit/Jetpack Compose）"
+      - "🔐 认证方式？（Firebase/Auth0/自建）"
+      - "💾 数据存储？（本地/云端/混合）"
+      - "📊 分析和监控？（Firebase Analytics/Crashlytics）"
+
+    tech_stack_discovery:
+      - "现有代码库和技术栈？"
+      - "团队技能和经验？"
+      - "应用类型和核心功能？"
+
+    constraints:
+      - "发布时间和预算"
+      - "性能要求（启动时间、内存）"
+      - "设备兼容性范围"
+
+  step_2_criteria:
+    success_criteria:
+      functional:
+        - "核心功能完整实现"
+        - "UI/UX 符合平台规范"
+        - "离线功能（如需要）"
+        - "推送通知正常"
+
+      technical:
+        - "遵循平台最佳实践"
+        - "代码模块化、可维护"
+        - "适当的状态管理"
+        - "网络请求错误处理"
+
+      performance:
+        - "启动时间 < 3秒"
+        - "界面流畅 60fps"
+        - "内存使用合理"
+        - "电池消耗优化"
+
+      compatibility:
+        - "支持目标 iOS/Android 版本"
+        - "适配不同屏幕尺寸"
+        - "Dark Mode 支持"
+        - "可访问性（Accessibility）"
+
+      quality:
+        - "测试覆盖率 > 70%"
+        - "无崩溃和严重 bug"
+        - "应用商店审核通过"
+
+    quality_indicators:
+      - "✅ 符合 App Store/Google Play 指南"
+      - "✅ 用户体验流畅自然"
+      - "✅ 性能指标达标"
+      - "✅ 文档完整"
+
+  step_3_assessment:
+    recommended_agents:
+      - name: "mobile-developer"
+        priority: 1
+        required: true
+        reason: "移动应用架构和开发"
+        conditions: null
+
+      - name: "ios-developer"
+        priority: 2
+        required: false
+        reason: "iOS 原生开发"
+        conditions: ["iOS", "Swift", "SwiftUI", "UIKit"]
+
+      - name: "flutter-expert"
+        priority: 3
+        required: false
+        reason: "Flutter 跨平台开发"
+        conditions: ["Flutter", "Dart", "跨平台"]
+
+      - name: "ui-ux-designer"
+        priority: 4
+        required: true
+        reason: "界面设计和用户体验"
+        conditions: null
+
+      - name: "performance-engineer"
+        priority: 5
+        required: false
+        reason: "性能优化和监控"
+        conditions: ["性能", "performance", "优化"]
+
+      - name: "test-automator"
+        priority: 6
+        required: true
+        reason: "自动化测试"
+        conditions: null
+
+      - name: "backend-architect"
+        priority: 7
+        required: false
+        reason: "后端 API 设计"
+        conditions: ["API", "backend", "后端"]
+
+    tech_stack_recommendations:
+      native_ios:
+        - framework: "SwiftUI"
+          reason: "现代化、声明式、苹果推荐"
+          when: "iOS 14+ 目标版本"
+        - framework: "UIKit"
+          reason: "成熟稳定、灵活控制"
+          when: "需要支持旧版本或复杂 UI"
+        - language: "Swift"
+          reason: "现代、安全、高性能"
+          when: "新项目或重构"
+
+      native_android:
+        - framework: "Jetpack Compose"
+          reason: "现代化、声明式、Google 推荐"
+          when: "Android 5.0+ 目标版本"
+        - framework: "XML Layouts"
+          reason: "传统方式、工具支持好"
+          when: "现有项目或需要兼容"
+        - language: "Kotlin"
+          reason: "简洁、安全、官方推荐"
+          when: "Android 开发首选"
+
+      cross_platform:
+        - framework: "React Native"
+          reason: "庞大生态、Web 开发者友好"
+          when: "团队熟悉 React/JavaScript"
+          pros: ["热重载", "社区活跃", "第三方库丰富"]
+          cons: ["性能不如原生", "需要 bridge"]
+
+        - framework: "Flutter"
+          reason: "高性能、统一代码、精美 UI"
+          when: "追求性能和 UI 一致性"
+          pros: ["接近原生性能", "Hot Reload", "Material/Cupertino"]
+          cons: ["包体积较大", "Dart 学习曲线"]
+
+      state_management:
+        react_native:
+          - "Redux / Redux Toolkit"
+          - "MobX"
+          - "Zustand"
+          - "React Context + Hooks"
+
+        flutter:
+          - "Provider"
+          - "Riverpod"
+          - "Bloc/Cubit"
+          - "GetX"
+
+        ios:
+          - "SwiftUI @State/@Binding"
+          - "Combine"
+          - "MVVM"
+
+        android:
+          - "ViewModel + LiveData"
+          - "Flow + StateFlow"
+          - "MVVM / MVI"
+
+      backend_services:
+        - service: "Firebase"
+          features: ["Auth", "Firestore", "Storage", "Analytics", "Crashlytics"]
+          reason: "全功能 BaaS、快速开发"
+          when: "快速原型或中小型应用"
+
+        - service: "AWS Amplify"
+          features: ["Auth", "API", "Storage", "Analytics"]
+          reason: "AWS 集成、可扩展"
+          when: "已使用 AWS 或企业级应用"
+
+        - service: "Supabase"
+          features: ["Auth", "Database", "Storage", "Real-time"]
+          reason: "开源、PostgreSQL、实时功能"
+          when: "需要开源方案或关系型数据库"
+
+      testing:
+        - tool: "Jest + React Native Testing Library"
+          when: "React Native 单元测试"
+        - tool: "XCTest + XCUITest"
+          when: "iOS 原生测试"
+        - tool: "JUnit + Espresso"
+          when: "Android 原生测试"
+        - tool: "Flutter Test + integration_test"
+          when: "Flutter 测试"
+        - tool: "Detox"
+          when: "React Native E2E 测试"
+        - tool: "Appium"
+          when: "跨平台 E2E 测试"
+
+    parallel_execution_strategy:
+      phase_1:
+        - "架构设计和技术选型"
+        - "UI/UX 设计和原型"
+        - "后端 API 设计"
+
+      phase_2:
+        - "基础框架和导航搭建"
+        - "状态管理实现"
+        - "网络层和数据层"
+
+      phase_3:
+        - "核心功能实现"
+        - "UI 组件开发"
+        - "单元测试编写"
+
+      phase_4:
+        - "集成测试"
+        - "性能优化"
+        - "UI 适配和打磨"
+
+      phase_5:
+        - "发布准备（图标、截图、描述）"
+        - "应用商店提交"
+        - "监控和分析配置"
+
+  step_4_risks:
+    common_risks:
+      - risk: "平台差异导致行为不一致"
+        probability: "高"
+        impact: "中"
+        mitigation: "充分测试两个平台、使用平台抽象层"
+        detection: "跨平台测试、用户反馈"
+
+      - risk: "性能问题（启动慢、卡顿）"
+        probability: "中"
+        impact: "高"
+        mitigation: "性能分析、代码优化、懒加载"
+        detection: "性能监控工具、实际设备测试"
+
+      - risk: "第三方依赖版本冲突"
+        probability: "高"
+        impact: "中"
+        mitigation: "依赖管理工具、版本锁定"
+        detection: "CI 构建、定期更新检查"
+
+      - risk: "应用商店审核被拒"
+        probability: "中"
+        impact: "高"
+        mitigation: "遵循指南、充分测试、准备详细说明"
+        detection: "预审查清单、Beta 测试"
+
+      - risk: "内存泄漏和崩溃"
+        probability: "中"
+        impact: "严重"
+        mitigation: "内存分析、Crash 监控、充分测试"
+        detection: "Instruments/Android Profiler、Crashlytics"
+
+    backup_plan:
+      - scenario: "跨平台方案性能不达标"
+        alternative: "关键页面使用原生实现"
+      - scenario: "第三方库不兼容"
+        alternative: "寻找替代方案或自行实现"
+      - scenario: "商店审核周期过长"
+        alternative: "TestFlight/Google Play Beta 先行发布"
+
+  step_5_execution:
+    key_milestones:
+      - milestone: "架构和框架搭建完成"
+        checkpoint: "导航、状态管理、网络层可用"
+      - milestone: "核心功能实现"
+        checkpoint: "主要用户流程可演示"
+      - milestone: "UI 完成和适配"
+        checkpoint: "所有屏幕实现且适配完成"
+      - milestone: "测试通过"
+        checkpoint: "单元测试、集成测试、E2E 测试通过"
+      - milestone: "性能优化完成"
+        checkpoint: "启动时间、内存、流畅度达标"
+      - milestone: "应用商店发布"
+        checkpoint: "审核通过、正式上线"
+
+    progress_indicators:
+      - "已完成功能数 / 总功能数"
+      - "测试覆盖率"
+      - "性能指标趋势"
+      - "Crash-free 率"
+
+  step_6_verification:
+    verification_checklist:
+      functionality:
+        - "✅ 所有核心功能正常工作"
+        - "✅ 边界情况和错误处理完整"
+        - "✅ 离线功能（如需要）正常"
+        - "✅ 推送通知工作正常"
+
+      ui_ux:
+        - "✅ 符合平台 UI 规范"
+        - "✅ 适配所有目标屏幕尺寸"
+        - "✅ Dark Mode 支持"
+        - "✅ 动画流畅自然"
+
+      performance:
+        - "✅ 启动时间 < 3秒"
+        - "✅ 界面流畅无卡顿"
+        - "✅ 内存使用合理"
+        - "✅ 电池消耗正常"
+
+      compatibility:
+        - "✅ 支持目标操作系统版本"
+        - "✅ 多种设备测试通过"
+        - "✅ 可访问性功能正常"
+        - "✅ 国际化支持（如需要）"
+
+      quality:
+        - "✅ 测试覆盖率 > 70%"
+        - "✅ Crash-free 率 > 99%"
+        - "✅ 无内存泄漏"
+        - "✅ 代码审查通过"
+
+      release:
+        - "✅ 应用图标和启动画面"
+        - "✅ 商店截图和描述"
+        - "✅ 隐私政策和用户协议"
+        - "✅ 符合应用商店指南"
+
+# 统计数据
+stats:
+  usage_count: 0
+  success_count: 0
+  failure_count: 0
+  success_rate: null
+  avg_satisfaction: null
+  avg_execution_time: null
+  last_used: null
+  total_feedback: 0
+
+# 元数据
+meta:
+  schema_version: "1.0"
+  derived_from: null
+  confidence: 0.90
+  maintainer: "claude-agent-dispatch"
+  license: "MIT"
+  related_recipes:
+    - "web-development.yaml"
+    - "ui-ux-design.yaml"
+    - "api-development.yaml"

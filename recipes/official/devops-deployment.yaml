@@ -1,0 +1,337 @@
+# DevOps Deployment Recipe
+# 适用于 CI/CD、容器化、云部署等 DevOps 任务
+
+metadata:
+  name: "DevOps Deployment"
+  version: "1.0.0"
+  description: "DevOps 和部署专用 Recipe，支持 CI/CD、容器化、云原生部署"
+  category: "devops"
+  tags: ["devops", "deployment", "cicd", "docker", "kubernetes", "cloud"]
+  author: "claude-agent-dispatch"
+  created_at: "2025-10-13"
+  updated_at: "2025-10-13"
+
+# 触发条件
+triggers:
+  keywords:
+    - "DevOps"
+    - "deployment"
+    - "部署"
+    - "CI/CD"
+    - "Docker"
+    - "Kubernetes"
+    - "K8s"
+    - "容器"
+    - "container"
+    - "pipeline"
+    - "云部署"
+    - "cloud deploy"
+
+  patterns:
+    - "部署.*应用"
+    - "配置.*CI/CD"
+    - "搭建.*pipeline"
+    - "deploy.*application"
+    - "setup.*pipeline"
+    - "configure.*kubernetes"
+
+# 工作流增强
+workflow:
+  step_1_clarification:
+    priority_questions:
+      - "🚀 部署目标环境？（AWS/Azure/GCP/自建）"
+      - "📦 容器化方案？（Docker/Podman/none）"
+      - "🔄 CI/CD 工具？（GitHub Actions/GitLab CI/Jenkins）"
+      - "⚡ 编排方案？（Kubernetes/Docker Swarm/ECS）"
+      - "🌍 多环境部署？（dev/staging/prod）"
+      - "📊 监控和日志？（Prometheus/ELK/CloudWatch）"
+
+    tech_stack_discovery:
+      - "现有基础设施和工具链？"
+      - "应用类型和技术栈？"
+      - "流量规模和性能要求？"
+
+    constraints:
+      - "预算限制（云资源成本）"
+      - "合规要求（安全、审计）"
+      - "团队技能和经验"
+
+  step_2_criteria:
+    success_criteria:
+      functional:
+        - "自动化部署流程正常工作"
+        - "回滚机制可用"
+        - "多环境隔离正确"
+
+      technical:
+        - "遵循 GitOps 或 Infrastructure as Code 最佳实践"
+        - "配置可复用、可维护"
+        - "秘密和凭证安全管理"
+
+      performance:
+        - "部署时间 < 10分钟"
+        - "零停机部署（blue-green/canary）"
+        - "资源利用率优化"
+
+      reliability:
+        - "健康检查和自动恢复"
+        - "日志聚合和监控完整"
+        - "告警机制配置正确"
+
+      security:
+        - "镜像扫描和漏洞检测"
+        - "最小权限原则"
+        - "网络隔离和防火墙规则"
+
+    quality_indicators:
+      - "✅ 部署流程完全自动化"
+      - "✅ 基础设施即代码（IaC）"
+      - "✅ 可观测性完整"
+      - "✅ 文档清晰完整"
+
+  step_3_assessment:
+    recommended_agents:
+      - name: "deployment-engineer"
+        priority: 1
+        required: true
+        reason: "CI/CD pipeline 设计和实现"
+        conditions: null
+
+      - name: "kubernetes-architect"
+        priority: 2
+        required: false
+        reason: "Kubernetes 集群设计和配置"
+        conditions: ["Kubernetes", "K8s", "容器编排"]
+
+      - name: "cloud-architect"
+        priority: 3
+        required: false
+        reason: "云基础设施设计"
+        conditions: ["AWS", "Azure", "GCP", "云部署"]
+
+      - name: "terraform-specialist"
+        priority: 4
+        required: false
+        reason: "基础设施即代码实现"
+        conditions: ["Terraform", "IaC", "Infrastructure as Code"]
+
+      - name: "security-auditor"
+        priority: 5
+        required: true
+        reason: "部署安全审计"
+        conditions: null
+
+      - name: "observability-engineer"
+        priority: 6
+        required: true
+        reason: "监控和日志系统"
+        conditions: null
+
+      - name: "docker-expert"
+        priority: 7
+        required: false
+        reason: "容器化和镜像优化"
+        conditions: ["Docker", "容器", "container"]
+
+    tech_stack_recommendations:
+      cicd:
+        - tool: "GitHub Actions"
+          reason: "原生 GitHub 集成、简单易用"
+          when: "GitHub 仓库"
+        - tool: "GitLab CI/CD"
+          reason: "功能完整、自托管支持"
+          when: "GitLab 仓库或自建需求"
+        - tool: "Jenkins"
+          reason: "插件丰富、高度可定制"
+          when: "复杂流程或遗留系统"
+        - tool: "ArgoCD"
+          reason: "GitOps 最佳实践"
+          when: "Kubernetes 环境"
+
+      containerization:
+        - tool: "Docker"
+          reason: "标准容器化方案"
+          when: "通用容器化需求"
+        - tool: "Buildpacks"
+          reason: "无需 Dockerfile"
+          when: "快速原型或简单应用"
+        - tool: "Multi-stage builds"
+          reason: "优化镜像大小"
+          when: "生产环境部署"
+
+      orchestration:
+        - tool: "Kubernetes (EKS/AKS/GKE)"
+          reason: "云原生标准、高可用"
+          when: "微服务架构、大规模部署"
+        - tool: "Docker Compose"
+          reason: "简单、适合小规模"
+          when: "开发环境或小型应用"
+        - tool: "AWS ECS/Fargate"
+          reason: "无需管理集群"
+          when: "AWS 生态、简化运维"
+
+      infrastructure_as_code:
+        - tool: "Terraform"
+          reason: "多云支持、声明式"
+          when: "跨云平台或复杂基础设施"
+        - tool: "Pulumi"
+          reason: "编程语言支持"
+          when: "需要编程逻辑"
+        - tool: "AWS CDK"
+          reason: "AWS 原生、TypeScript/Python"
+          when: "AWS 环境"
+
+      monitoring:
+        - tool: "Prometheus + Grafana"
+          reason: "开源标准、Kubernetes 原生"
+          when: "自建监控系统"
+        - tool: "Datadog"
+          reason: "功能强大、开箱即用"
+          when: "预算充足、快速上线"
+        - tool: "CloudWatch/Azure Monitor"
+          reason: "云原生监控"
+          when: "云平台部署"
+
+      logging:
+        - tool: "ELK Stack (Elasticsearch, Logstash, Kibana)"
+          reason: "功能强大、可定制"
+          when: "自建日志系统"
+        - tool: "Loki + Grafana"
+          reason: "轻量级、集成 Prometheus"
+          when: "Kubernetes 环境"
+        - tool: "CloudWatch Logs"
+          reason: "AWS 原生"
+          when: "AWS 部署"
+
+    parallel_execution_strategy:
+      phase_1:
+        - "基础设施设计和 IaC 编写"
+        - "容器镜像构建和优化"
+        - "秘密管理方案设计"
+
+      phase_2:
+        - "CI/CD pipeline 配置"
+        - "Kubernetes/编排配置"
+        - "监控和日志系统搭建"
+
+      phase_3:
+        - "部署脚本和自动化"
+        - "健康检查和自动恢复配置"
+        - "文档编写"
+
+      phase_4:
+        - "安全扫描和加固"
+        - "性能测试和优化"
+        - "演练和文档完善"
+
+  step_4_risks:
+    common_risks:
+      - risk: "秘密泄露到版本控制"
+        probability: "中"
+        impact: "严重"
+        mitigation: "使用 Secrets Manager、环境变量、加密配置"
+        detection: "代码审查、自动扫描工具"
+
+      - risk: "部署失败导致服务中断"
+        probability: "中"
+        impact: "高"
+        mitigation: "蓝绿部署、金丝雀发布、自动回滚"
+        detection: "健康检查、监控告警"
+
+      - risk: "资源配置不当导致成本超支"
+        probability: "高"
+        impact: "中"
+        mitigation: "资源限制、自动扩缩容、成本监控"
+        detection: "云账单告警、资源使用监控"
+
+      - risk: "权限配置错误导致安全问题"
+        probability: "中"
+        impact: "严重"
+        mitigation: "最小权限原则、IAM 审计、RBAC 配置"
+        detection: "安全扫描、访问日志审计"
+
+      - risk: "依赖镜像漏洞"
+        probability: "高"
+        impact: "中"
+        mitigation: "镜像扫描、定期更新、使用官方镜像"
+        detection: "Trivy/Snyk 等扫描工具"
+
+    backup_plan:
+      - scenario: "部署失败"
+        alternative: "自动回滚到上一个稳定版本"
+      - scenario: "基础设施故障"
+        alternative: "多可用区部署、灾难恢复计划"
+      - scenario: "性能不达标"
+        alternative: "水平扩展、负载均衡优化"
+
+  step_5_execution:
+    key_milestones:
+      - milestone: "基础设施就绪"
+        checkpoint: "IaC 代码通过验证、资源创建成功"
+      - milestone: "CI/CD pipeline 可用"
+        checkpoint: "测试部署成功"
+      - milestone: "监控系统运行"
+        checkpoint: "指标采集正常、告警配置完成"
+      - milestone: "生产部署成功"
+        checkpoint: "服务健康、流量正常"
+
+    progress_indicators:
+      - "基础设施资源创建进度"
+      - "Pipeline 执行成功率"
+      - "部署时间趋势"
+      - "错误率和告警数量"
+
+  step_6_verification:
+    verification_checklist:
+      functionality:
+        - "✅ 应用部署成功并可访问"
+        - "✅ 健康检查正常"
+        - "✅ 自动扩缩容工作正常"
+        - "✅ 回滚机制验证通过"
+
+      performance:
+        - "✅ 响应时间满足要求"
+        - "✅ 资源利用率合理"
+        - "✅ 并发处理能力达标"
+        - "✅ 无性能瓶颈"
+
+      security:
+        - "✅ 镜像扫描无高危漏洞"
+        - "✅ 秘密管理安全"
+        - "✅ 网络隔离正确"
+        - "✅ 最小权限配置"
+
+      reliability:
+        - "✅ 监控指标完整"
+        - "✅ 日志聚合正常"
+        - "✅ 告警及时有效"
+        - "✅ 故障自动恢复"
+
+      documentation:
+        - "✅ 部署文档完整"
+        - "✅ 运维手册清晰"
+        - "✅ 架构图准确"
+        - "✅ 应急预案完善"
+
+# 统计数据
+stats:
+  usage_count: 0
+  success_count: 0
+  failure_count: 0
+  success_rate: null
+  avg_satisfaction: null
+  avg_execution_time: null
+  last_used: null
+  total_feedback: 0
+
+# 元数据
+meta:
+  schema_version: "1.0"
+  derived_from: null
+  confidence: 0.90
+  maintainer: "claude-agent-dispatch"
+  license: "MIT"
+  related_recipes:
+    - "api-development.yaml"
+    - "microservices.yaml"
+    - "cloud-architecture.yaml"

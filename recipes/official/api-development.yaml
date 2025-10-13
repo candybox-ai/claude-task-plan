@@ -1,0 +1,319 @@
+# API Development Recipe
+# 适用于 REST/GraphQL API 开发任务
+
+metadata:
+  name: "API Development"
+  version: "1.0.0"
+  description: "REST 和 GraphQL API 开发专用 Recipe，支持现代 API 架构和最佳实践"
+  category: "backend"
+  tags: ["api", "rest", "graphql", "backend", "microservices"]
+  author: "claude-agent-dispatch"
+  created_at: "2025-10-13"
+  updated_at: "2025-10-13"
+
+# 触发条件
+triggers:
+  keywords:
+    - "API"
+    - "REST"
+    - "RESTful"
+    - "GraphQL"
+    - "endpoint"
+    - "微服务"
+    - "microservice"
+    - "backend"
+    - "后端"
+    - "接口"
+    - "服务"
+
+  patterns:
+    - "开发.*API"
+    - "构建.*接口"
+    - "实现.*endpoint"
+    - "develop.*api"
+    - "build.*service"
+    - "create.*endpoint"
+
+# 工作流增强
+workflow:
+  step_1_clarification:
+    priority_questions:
+      - "🔧 API 类型？（REST/GraphQL/gRPC）"
+      - "🗄️  数据库选择？（PostgreSQL/MongoDB/MySQL）"
+      - "🔐 认证方式？（JWT/OAuth2/API Key）"
+      - "📊 预期负载和性能要求？"
+      - "🌍 是否需要国际化支持？"
+      - "📝 API 文档工具？（OpenAPI/Swagger/GraphQL Playground）"
+
+    tech_stack_discovery:
+      - "现有技术栈和框架？"
+      - "是否有遗留系统需要集成？"
+      - "数据模型和关系？"
+
+    constraints:
+      - "性能指标要求（QPS、延迟）"
+      - "安全合规要求（GDPR、HIPAA）"
+      - "预算和时间限制"
+
+  step_2_criteria:
+    success_criteria:
+      functional:
+        - "所有 API 端点按规范工作"
+        - "请求验证和错误处理完整"
+        - "数据一致性和事务处理正确"
+
+      technical:
+        - "遵循 RESTful 或 GraphQL 最佳实践"
+        - "代码模块化、可测试"
+        - "适当的日志和监控"
+
+      performance:
+        - "响应时间 < 200ms（P95）"
+        - "吞吐量满足预期 QPS"
+        - "数据库查询优化（使用索引）"
+
+      security:
+        - "输入验证和 SQL 注入防护"
+        - "认证和授权正确实现"
+        - "敏感数据加密存储"
+
+      documentation:
+        - "OpenAPI/GraphQL schema 完整"
+        - "示例请求和响应"
+        - "错误码文档"
+
+    quality_indicators:
+      - "✅ API 设计符合行业标准"
+      - "✅ 版本控制策略清晰"
+      - "✅ 错误处理统一"
+      - "✅ 测试覆盖率 > 80%"
+
+  step_3_assessment:
+    recommended_agents:
+      - name: "backend-developer"
+        priority: 1
+        required: true
+        reason: "API 架构设计和实现"
+        conditions: null
+
+      - name: "database-optimizer"
+        priority: 2
+        required: true
+        reason: "数据库设计和查询优化"
+        conditions: null
+
+      - name: "security-auditor"
+        priority: 3
+        required: true
+        reason: "API 安全审计和漏洞检测"
+        conditions: null
+
+      - name: "python-pro"
+        priority: 4
+        required: false
+        reason: "Python API 框架（FastAPI/Django）"
+        conditions: ["Python", "FastAPI", "Django"]
+
+      - name: "typescript-pro"
+        priority: 5
+        required: false
+        reason: "Node.js API 开发（Express/NestJS）"
+        conditions: ["TypeScript", "Node.js", "Express", "NestJS"]
+
+      - name: "test-automator"
+        priority: 6
+        required: true
+        reason: "API 自动化测试"
+        conditions: null
+
+      - name: "api-documenter"
+        priority: 7
+        required: false
+        reason: "API 文档生成"
+        conditions: ["文档", "documentation"]
+
+    tech_stack_recommendations:
+      rest_api:
+        python:
+          - framework: "FastAPI"
+            reason: "高性能、自动文档、类型提示"
+            when: "Python + 现代化 API"
+          - framework: "Django REST Framework"
+            reason: "功能完整、ORM 强大"
+            when: "复杂业务逻辑"
+
+        nodejs:
+          - framework: "Express.js + TypeScript"
+            reason: "灵活、生态丰富"
+            when: "Node.js 微服务"
+          - framework: "NestJS"
+            reason: "企业级、模块化"
+            when: "大型应用"
+
+      graphql:
+        - framework: "Apollo Server"
+          reason: "功能完整、社区活跃"
+          when: "GraphQL API"
+        - framework: "Hasura"
+          reason: "即时 GraphQL API"
+          when: "PostgreSQL 数据库"
+
+      authentication:
+        - method: "JWT"
+          reason: "无状态、易扩展"
+        - method: "OAuth 2.0"
+          reason: "第三方登录"
+        - method: "API Key"
+          reason: "服务间调用"
+
+      database:
+        - db: "PostgreSQL"
+          reason: "关系型、功能强大"
+          when: "复杂关系、事务"
+        - db: "MongoDB"
+          reason: "灵活 schema、高性能"
+          when: "文档型数据"
+        - db: "Redis"
+          reason: "缓存、会话存储"
+          when: "高性能读取"
+
+      tools:
+        - tool: "OpenAPI/Swagger"
+          reason: "标准 API 文档"
+        - tool: "Postman/Insomnia"
+          reason: "API 测试"
+        - tool: "Docker"
+          reason: "容器化部署"
+
+    parallel_execution_strategy:
+      phase_1:
+        - "API 设计和规范定义"
+        - "数据库 schema 设计"
+        - "认证系统设计"
+
+      phase_2:
+        - "核心业务逻辑实现"
+        - "数据库操作层开发"
+        - "中间件开发（认证、日志）"
+
+      phase_3:
+        - "API 端点实现"
+        - "单元测试和集成测试"
+        - "API 文档生成"
+
+      phase_4:
+        - "性能优化"
+        - "安全审计"
+        - "部署配置"
+
+  step_4_risks:
+    common_risks:
+      - risk: "数据库 N+1 查询问题"
+        probability: "高"
+        impact: "高"
+        mitigation: "使用 ORM 的 eager loading、数据库查询分析"
+        detection: "性能监控、慢查询日志"
+
+      - risk: "API 版本兼容性"
+        probability: "中"
+        impact: "高"
+        mitigation: "URL 或 Header 版本控制、向后兼容设计"
+        detection: "集成测试、版本测试套件"
+
+      - risk: "认证和授权漏洞"
+        probability: "中"
+        impact: "严重"
+        mitigation: "使用成熟的认证库、安全审计"
+        detection: "安全扫描工具"
+
+      - risk: "API 限流不足导致 DDoS"
+        probability: "中"
+        impact: "高"
+        mitigation: "实现 Rate Limiting、使用 API Gateway"
+        detection: "监控异常流量"
+
+      - risk: "敏感数据泄露"
+        probability: "低"
+        impact: "严重"
+        mitigation: "响应数据脱敏、加密传输"
+        detection: "代码审查、安全扫描"
+
+    backup_plan:
+      - scenario: "性能不达标"
+        alternative: "引入缓存层（Redis）、数据库优化、负载均衡"
+      - scenario: "安全漏洞"
+        alternative: "使用 API Gateway、增加 WAF"
+
+  step_5_execution:
+    key_milestones:
+      - milestone: "API 规范定义完成"
+        checkpoint: "OpenAPI/GraphQL schema 审核通过"
+      - milestone: "核心端点实现"
+        checkpoint: "主要业务流程可测试"
+      - milestone: "测试通过"
+        checkpoint: "单元测试和集成测试全部通过"
+      - milestone: "性能达标"
+        checkpoint: "负载测试满足要求"
+      - milestone: "安全审计通过"
+        checkpoint: "无严重安全漏洞"
+
+    progress_indicators:
+      - "已完成端点数 / 总端点数"
+      - "测试覆盖率"
+      - "性能测试结果"
+      - "安全扫描结果"
+
+  step_6_verification:
+    verification_checklist:
+      functionality:
+        - "✅ 所有端点按规范工作"
+        - "✅ 错误处理完整"
+        - "✅ 数据验证正确"
+        - "✅ 业务逻辑正确"
+
+      performance:
+        - "✅ 响应时间 < 200ms（P95）"
+        - "✅ 吞吐量满足要求"
+        - "✅ 无明显性能瓶颈"
+        - "✅ 数据库查询优化"
+
+      security:
+        - "✅ 输入验证完整"
+        - "✅ 认证授权正确"
+        - "✅ 敏感数据加密"
+        - "✅ OWASP Top 10 检查"
+
+      documentation:
+        - "✅ API 文档完整"
+        - "✅ 示例请求齐全"
+        - "✅ 错误码说明"
+        - "✅ 部署文档"
+
+      testing:
+        - "✅ 单元测试 > 80%"
+        - "✅ 集成测试覆盖关键路径"
+        - "✅ 负载测试通过"
+        - "✅ 安全测试通过"
+
+# 统计数据
+stats:
+  usage_count: 0
+  success_count: 0
+  failure_count: 0
+  success_rate: null
+  avg_satisfaction: null
+  avg_execution_time: null
+  last_used: null
+  total_feedback: 0
+
+# 元数据
+meta:
+  schema_version: "1.0"
+  derived_from: null
+  confidence: 0.90
+  maintainer: "claude-agent-dispatch"
+  license: "MIT"
+  related_recipes:
+    - "web-development.yaml"
+    - "microservices.yaml"
+    - "database-design.yaml"
