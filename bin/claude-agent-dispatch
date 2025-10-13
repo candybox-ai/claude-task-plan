@@ -1,150 +1,241 @@
 #!/bin/bash
 
-# Claude Code intelligent agent dispatch script
+# Claude Agent Dispatch v2.0
+# Intelligent agent orchestration with self-evolution capabilities
 # Usage: claude-agent-dispatch "your task description"
+#        claude-agent-dispatch feedback <execution-id>
 
-# Language detection
+set -e
+
+# ============================================================================
+# Configuration
+# ============================================================================
+
+SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
+PROJECT_ROOT="$(cd "$SCRIPT_DIR/.." && pwd)"
+CORE_DIR="$PROJECT_ROOT/core"
+
+# Source all core modules
+source "$CORE_DIR/recipe-loader.sh"
+source "$CORE_DIR/recipe-matcher.sh"
+source "$CORE_DIR/agent-finder.sh"
+source "$CORE_DIR/prompt-builder.sh"
+source "$CORE_DIR/data-extractor.sh"
+source "$CORE_DIR/feedback-collector.sh"
+source "$CORE_DIR/knowledge-recorder.sh"
+
+# Colors
+RED='\033[0;31m'
+GREEN='\033[0;32m'
+YELLOW='\033[1;33m'
+BLUE='\033[0;34m'
+CYAN='\033[0;36m'
+MAGENTA='\033[0;35m'
+NC='\033[0m'
+
+# ============================================================================
+# Language Detection
+# ============================================================================
+
 detect_language() {
+    local text="${1:-}"
     if [[ "$CLAUDE_AGENT_DISPATCH_LANG" == "en" ]]; then
         echo "en"
     elif [[ "$CLAUDE_AGENT_DISPATCH_LANG" == "zh" ]]; then
         echo "zh"
-    elif [[ "$task" =~ [一-龯] ]]; then
+    elif [[ "$text" =~ [一-龯] ]]; then
         echo "zh"
     else
         echo "en"
     fi
 }
 
-# Usage messages
+# ============================================================================
+# Usage & Help
+# ============================================================================
+
 show_usage() {
-    local lang=$(detect_language)
+    local lang=$(detect_language "$task")
+
+    echo ""
+    echo -e "${GREEN}╔════════════════════════════════════════╗${NC}"
+    echo -e "${GREEN}║   Claude Agent Dispatch v2.0          ║${NC}"
+    echo -e "${GREEN}╚════════════════════════════════════════╝${NC}"
+    echo ""
+
     if [[ "$lang" == "zh" ]]; then
-        echo "用法: claude-agent-dispatch \"任务描述\""
-        echo "示例: claude-agent-dispatch \"实现用户登录功能\""
+        echo -e "${BLUE}用法:${NC}"
+        echo "  claude-agent-dispatch \"任务描述\""
+        echo "  claude-agent-dispatch feedback <execution-id>"
+        echo ""
+        echo -e "${BLUE}示例:${NC}"
+        echo "  claude-agent-dispatch \"实现用户登录功能\""
+        echo "  claude-agent-dispatch feedback exec-20231011-123456"
     else
-        echo "Usage: claude-agent-dispatch \"your task description\""
-        echo "Example: claude-agent-dispatch \"Implement user authentication\""
+        echo -e "${BLUE}Usage:${NC}"
+        echo "  claude-agent-dispatch \"your task description\""
+        echo "  claude-agent-dispatch feedback <execution-id>"
+        echo ""
+        echo -e "${BLUE}Examples:${NC}"
+        echo "  claude-agent-dispatch \"Implement user authentication\""
+        echo "  claude-agent-dispatch feedback exec-20231011-123456"
     fi
+    echo ""
 }
 
-if [ $# -eq 0 ]; then
-    show_usage
-    exit 1
-fi
+show_version() {
+    echo "Claude Agent Dispatch v2.0.0-alpha"
+    echo "Build: $(date +%Y%m%d)"
+}
 
-task="$1"
-lang=$(detect_language)
+# ============================================================================
+# Main Task Execution Workflow
+# ============================================================================
 
-# Build prompt based on language
-if [[ "$lang" == "zh" ]]; then
-    prompt="任务描述：$task
+execute_task() {
+    local task="$1"
+    local lang=$(detect_language "$task")
 
-请按照以下步骤执行，确保任务100%按期望完成："
-else
-    prompt="Task Description: $task
+    echo ""
+    echo -e "${GREEN}╔════════════════════════════════════════╗${NC}"
+    echo -e "${GREEN}║   Claude Agent Dispatch v2.0          ║${NC}"
+    echo -e "${GREEN}╚════════════════════════════════════════╝${NC}"
+    echo ""
 
-Please execute following steps to ensure 100% task completion as expected:"
-fi
+    # Generate execution ID
+    local execution_id=$(generate_execution_id)
+    local start_time=$(date +%s)
 
-# Add workflow steps based on language
-if [[ "$lang" == "zh" ]]; then
-    workflow="
-1. 【需求澄清阶段】
-   如果对任务描述有任何疑问或需要更多信息，请先提问解决疑问。
-   不要假设任何细节，确保完全理解任务要求。
+    print_info "🎯 Execution ID: $execution_id" >&2
+    echo "" >&2
 
-2. 【需求确认与成功标准定义】
-   澄清疑问后，请：
-   - 明确重述理解的任务需求
-   - 详细定义\"成功完成\"的具体标准
-   - 确定可衡量的交付成果和质量指标
-   - 识别潜在的边界条件和约束
-   - 等待我确认需求理解和成功标准
+    # Step 1: Load all recipes
+    print_info "📚 Loading Recipes..." >&2
+    local recipes=$(load_all_recipes "$PROJECT_ROOT/recipes" 2>&1)
+    echo "" >&2
 
-3. 【可行性评估与方案制定】
-   需求确认后，进行：
-   - 评估所需的专业Agent类型和技术栈
-   - 检查Agent可用性，如不可用则搜索安装或寻找替代方案
-   - 分析技术可行性和资源需求
-   - 制定详细的实施方案和执行策略
-   - 设计并行/串行的最优调度策略
+    # Step 2: Match recipe
+    print_info "🔍 Matching task to Recipes..." >&2
+    local selected_recipe=$(match_recipe_for_task "$task" "$recipes" 2>&1)
+    local match_result=$?
+    echo "" >&2
 
-4. 【方案确认与风险评估】
-   方案制定后：
-   - 展示完整的执行方案（Agent选择、执行顺序、时间预估）
-   - 识别潜在风险点和失败场景
-   - 制定风险缓解措施和备选方案
-   - 确保方案100%可执行且能达成目标
-   - 等待最终方案确认
+    # Step 3: Extract recommended agents from recipe (if matched)
+    local agents="[]"
+    if [[ $match_result -eq 0 ]] && [[ -n "$selected_recipe" ]]; then
+        agents=$(echo "$selected_recipe" | jq -c '.workflow.step_3_assessment.recommended_agents // []' 2>/dev/null || echo "[]")
+    fi
 
-5. 【执行监控阶段】
-   方案确认后开始执行：
-   - 按计划调度和执行各Agent任务
-   - 实时监控执行进度和状态
-   - 主动报告关键节点和异常情况
-   - 遇到问题时立即启动风险缓解措施
-   - 确保执行过程可控可追溯
+    # Step 4: Build enhanced prompt
+    print_info "🏗️  Building enhanced prompt..." >&2
+    local prompt=$(build_prompt "$task" "$selected_recipe" "$agents" "$lang" 2>&1)
+    echo "" >&2
 
-6. 【交付验证阶段】
-   执行完成后严格验证：
-   - 对照成功标准逐项检查交付成果
-   - 验证结果是否100%符合期望需求
-   - 进行质量评估和完整性检查
-   - 如不满足标准，分析根因并重新优化
-   - 直到完全满足期望才视为任务完成
+    # Step 5: Execute with Claude
+    print_info "🚀 Executing task with Claude..." >&2
+    echo "" >&2
+    echo -e "${CYAN}═══════════════════════════════════════${NC}" >&2
 
-目标：生成完全符合我期望的高质量结果。"
-else
-    workflow="
-1. 【Requirement Clarification】
-   If there are any questions or need more information about task description, ask questions first.
-   Don't assume any details, ensure complete understanding of requirements.
+    # Execute and capture output
+    local output=$(claude "$prompt" 2>&1)
+    local claude_exit=$?
 
-2. 【Requirement Confirmation & Success Criteria Definition】
-   After clarification, please:
-   - Clearly restate understood task requirements
-   - Define specific standards for \"successful completion\"
-   - Determine measurable deliverables and quality indicators
-   - Identify potential boundary conditions and constraints
-   - Wait for confirmation of requirement understanding and success criteria
+    echo -e "${CYAN}═══════════════════════════════════════${NC}" >&2
+    echo "" >&2
 
-3. 【Feasibility Assessment & Solution Design】
-   After requirement confirmation, proceed with:
-   - Evaluate required professional agent types and tech stack
-   - Check agent availability, search/install if unavailable, or find alternatives
-   - Analyze technical feasibility and resource requirements
-   - Develop detailed implementation plan and execution strategy
-   - Design optimal parallel/serial scheduling strategy
+    local end_time=$(date +%s)
 
-4. 【Solution Confirmation & Risk Assessment】
-   After solution design:
-   - Display complete execution plan (agent selection, sequence, time estimation)
-   - Identify potential risks and failure scenarios
-   - Develop risk mitigation measures and backup plans
-   - Ensure solution is 100% executable and can achieve goals
-   - Wait for final solution confirmation
+    # Step 6: Extract execution data
+    print_info "📊 Extracting execution data..." >&2
+    local extraction=$(extract_execution_data "$output" "" "$start_time" "$end_time" 2>&1)
+    echo "" >&2
 
-5. 【Execution Monitoring】
-   After solution confirmation, start execution:
-   - Schedule and execute agent tasks according to plan
-   - Monitor execution progress and status in real-time
-   - Proactively report key milestones and exceptions
-   - Immediately activate risk mitigation when problems occur
-   - Ensure execution process is controllable and traceable
+    # Build execution record
+    local execution_data=$(echo "$extraction" | jq --arg id "$execution_id" \
+        --arg task "$task" \
+        --arg recipe "$(echo "$selected_recipe" | jq -r '.metadata.name // "none"')" \
+        '. + {
+            execution_id: $id,
+            task_description: $task,
+            recipe_used: $recipe,
+            exit_code: '$claude_exit'
+        }')
 
-6. 【Delivery Verification】
-   After execution completion, strictly verify:
-   - Check deliverables against success criteria item by item
-   - Verify if results 100% meet expected requirements
-   - Conduct quality assessment and completeness check
-   - If standards not met, analyze root cause and re-optimize
-   - Consider task complete only when expectations are fully satisfied
+    # Save execution log
+    save_execution_log "$execution_id" "$execution_data" "$PROJECT_ROOT/logs/executions" >&2
+    echo "" >&2
 
-Goal: Generate high-quality results that completely meet your expectations."
-fi
+    # Step 7: Collect feedback
+    handle_feedback "$execution_id" "$execution_data" "$lang" >&2
+    local feedback_result=$?
 
-# 构建完整的指令
-prompt="$prompt$workflow"
+    # If feedback provided, record to knowledge base
+    if [[ $feedback_result -eq 0 ]]; then
+        print_info "🧠 Recording to knowledge base..." >&2
+        # Feedback will be recorded by feedback-collector
+    fi
 
-claude "$prompt"
+    echo "" >&2
+    print_success "✨ Execution complete!" >&2
+
+    if [[ "$lang" == "zh" ]]; then
+        echo -e "${CYAN}执行ID: $execution_id${NC}" >&2
+        echo -e "${CYAN}日志: logs/executions/${execution_id}.json${NC}" >&2
+    else
+        echo -e "${CYAN}Execution ID: $execution_id${NC}" >&2
+        echo -e "${CYAN}Log: logs/executions/${execution_id}.json${NC}" >&2
+    fi
+    echo "" >&2
+
+    return $claude_exit
+}
+
+# ============================================================================
+# Feedback Command
+# ============================================================================
+
+handle_feedback_command() {
+    local execution_id="$1"
+    local lang=$(detect_language)
+
+    collect_delayed_feedback "$execution_id" "$lang"
+}
+
+# ============================================================================
+# Main Entry Point
+# ============================================================================
+
+main() {
+    # Parse command
+    local command="${1:-}"
+
+    case "$command" in
+        "")
+            show_usage
+            exit 1
+            ;;
+        "--help"|"-h")
+            show_usage
+            exit 0
+            ;;
+        "--version"|"-v")
+            show_version
+            exit 0
+            ;;
+        "feedback")
+            if [[ -z "${2:-}" ]]; then
+                echo "Error: execution-id required" >&2
+                echo "Usage: claude-agent-dispatch feedback <execution-id>" >&2
+                exit 1
+            fi
+            handle_feedback_command "$2"
+            ;;
+        *)
+            # Treat as task description
+            execute_task "$command"
+            ;;
+    esac
+}
+
+# Run main
+main "$@"

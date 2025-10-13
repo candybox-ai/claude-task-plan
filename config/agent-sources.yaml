@@ -1,0 +1,107 @@
+# Agent Sources Configuration
+# Defines where to search for Claude Code agents
+
+version: "1.0.0"
+
+# Search priority order
+search_order:
+  - local
+  - official
+  - community
+  - github
+
+# Official Claude Code agents repository
+official:
+  enabled: true
+  source: "anthropic/claude-code"
+  url: "https://github.com/anthropics/claude-code"
+
+  # Built-in agent definitions
+  agents:
+    - name: "frontend-developer"
+      category: "development"
+      description: "Specialized in frontend frameworks (React, Vue, Angular)"
+
+    - name: "backend-developer"
+      category: "development"
+      description: "Backend services and API development"
+
+    - name: "python-pro"
+      category: "language"
+      description: "Python expert with modern features and best practices"
+
+    - name: "typescript-pro"
+      category: "language"
+      description: "TypeScript expert with advanced type systems"
+
+    - name: "data-scientist"
+      category: "analysis"
+      description: "Data analysis, visualization, and statistical modeling"
+
+    - name: "devops-engineer"
+      category: "operations"
+      description: "Deployment, CI/CD, and infrastructure automation"
+
+    - name: "security-auditor"
+      category: "security"
+      description: "Security analysis, vulnerability assessment, and compliance"
+
+    - name: "database-optimizer"
+      category: "database"
+      description: "Database design, query optimization, and performance tuning"
+
+    - name: "cloud-architect"
+      category: "cloud"
+      description: "Cloud infrastructure design and multi-cloud solutions"
+
+    - name: "ai-engineer"
+      category: "ai"
+      description: "AI/ML systems, LLM applications, and agent orchestration"
+
+    - name: "ml-engineer"
+      category: "ml"
+      description: "Machine learning model development and deployment"
+
+    - name: "test-automator"
+      category: "testing"
+      description: "Automated testing, test frameworks, and quality assurance"
+
+    - name: "code-reviewer"
+      category: "quality"
+      description: "Code review, best practices, and quality standards"
+
+    - name: "debugger"
+      category: "debugging"
+      description: "Debugging, error analysis, and troubleshooting"
+
+    - name: "performance-engineer"
+      category: "performance"
+      description: "Performance optimization and system profiling"
+
+# Community curated sources
+community:
+  enabled: true
+  sources:
+    - name: "awesome-claude-code"
+      url: "https://github.com/awesome/claude-code-agents"
+      trust_level: "high"
+
+    - name: "claude-code-hub"
+      url: "https://github.com/community/claude-agents"
+      trust_level: "medium"
+
+# GitHub search configuration
+github:
+  enabled: true
+  search_topics:
+    - "claude-code"
+    - "claude-agent"
+    - "anthropic-agent"
+  min_stars: 10
+  require_confirmation: true
+
+# Installation settings
+installation:
+  auto_install: false  # Ask user before installing
+  install_timeout: 300  # seconds
+  verify_after_install: true
