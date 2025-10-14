@@ -1,12 +1,12 @@
 # Web开发示例
 
-本文档展示如何使用 `claude-agent-dispatch` 进行各种Web开发任务，包含具体的项目结构和需求。
+本文档展示如何使用 `agentforge` 进行各种Web开发任务，包含具体的项目结构和需求。
 
 ## 示例1：React + Node.js 电商平台
 
 ### 任务描述
 ```bash
-claude-agent-dispatch "构建完整的电商平台，使用React前端和Node.js后端。项目结构：/src/frontend（React组件）、/src/backend（Express API）、/src/database（MongoDB模式）。功能需求：产品目录与搜索/筛选、购物车、Stripe支付集成、用户认证（JWT）、产品管理后台。实现移动端/桌面端响应式设计。"
+agentforge "构建完整的电商平台，使用React前端和Node.js后端。项目结构：/src/frontend（React组件）、/src/backend（Express API）、/src/database（MongoDB模式）。功能需求：产品目录与搜索/筛选、购物车、Stripe支付集成、用户认证（JWT）、产品管理后台。实现移动端/桌面端响应式设计。"
 ```
 
 ### Claude可能询问的问题（澄清阶段）
@@ -37,7 +37,7 @@ claude-agent-dispatch "构建完整的电商平台，使用React前端和Node.js
 
 ### 任务描述
 ```bash
-claude-agent-dispatch "为Web应用指标创建实时分析仪表板。技术栈：Next.js 14 + TypeScript，PostgreSQL数据库，WebSocket连接。数据源：/data/analytics/目录下的JSON文件，包含用户事件、页面浏览、转化数据。仪表板功能：实时访客计数器、转化漏斗可视化、用户地理分布图、性能指标图表。使用Docker Compose进行本地开发部署。"
+agentforge "为Web应用指标创建实时分析仪表板。技术栈：Next.js 14 + TypeScript，PostgreSQL数据库，WebSocket连接。数据源：/data/analytics/目录下的JSON文件，包含用户事件、页面浏览、转化数据。仪表板功能：实时访客计数器、转化漏斗可视化、用户地理分布图、性能指标图表。使用Docker Compose进行本地开发部署。"
 ```
 
 ### 预期交付成果
@@ -68,7 +68,7 @@ claude-agent-dispatch "为Web应用指标创建实时分析仪表板。技术栈
 
 ### 任务描述
 ```bash
-claude-agent-dispatch "使用Strapi后端和Next.js前端构建无头CMS。项目位置：/projects/my-cms/，结构：/backend（Strapi API）、/frontend（Next.js站点）、/content（markdown文件）。功能：文章管理、媒体库、用户角色（管理员/编辑/作者）、SEO优化、多语言支持（中文/英文）。内容类型：博客文章、页面、产品描述。后端部署到Railway，前端部署到Vercel。"
+agentforge "使用Strapi后端和Next.js前端构建无头CMS。项目位置：/projects/my-cms/，结构：/backend（Strapi API）、/frontend（Next.js站点）、/content（markdown文件）。功能：文章管理、媒体库、用户角色（管理员/编辑/作者）、SEO优化、多语言支持（中文/英文）。内容类型：博客文章、页面、产品描述。后端部署到Railway，前端部署到Vercel。"
 ```
 
 ### 详细工作流程
@@ -99,7 +99,7 @@ claude-agent-dispatch "使用Strapi后端和Next.js前端构建无头CMS。项�
 
 ### 任务描述
 ```bash
-claude-agent-dispatch "将位于/src/my-app/的现有React应用转换为具有离线功能的渐进式Web应用。需求：用于缓存策略的service worker、用户参与推送通知、IndexedDB离线数据同步、移动设备优化的响应式设计。应用功能：任务管理、日历集成、文件共享。目标：可安装的PWA，Lighthouse PWA评分90+。"
+agentforge "将位于/src/my-app/的现有React应用转换为具有离线功能的渐进式Web应用。需求：用于缓存策略的service worker、用户参与推送通知、IndexedDB离线数据同步、移动设备优化的响应式设计。应用功能：任务管理、日历集成、文件共享。目标：可安装的PWA，Lighthouse PWA评分90+。"
 ```
 
 ### 技术实现
@@ -124,12 +124,12 @@ claude-agent-dispatch "将位于/src/my-app/的现有React应用转换为具有�
 
 **❌ 过于泛泛：**
 ```bash
-claude-agent-dispatch "构建一个网站"
+agentforge "构建一个网站"
 ```
 
 **✅ 具体而完整：**
 ```bash
-claude-agent-dispatch "使用Astro静态站点生成器在/projects/portfolio/构建作品集网站。功能：项目展示与筛选、markdown内容博客部分、邮件集成联系表单、深色/浅色主题切换。部署到Netlify，GitHub自动构建。优化Core Web Vitals和无障碍性（WCAG 2.1 AA合规）。"
+agentforge "使用Astro静态站点生成器在/projects/portfolio/构建作品集网站。功能：项目展示与筛选、markdown内容博客部分、邮件集成联系表单、深色/浅色主题切换。部署到Netlify，GitHub自动构建。优化Core Web Vitals和无障碍性（WCAG 2.1 AA合规）。"
 ```
 
 ### 🎯 包含这些详细信息

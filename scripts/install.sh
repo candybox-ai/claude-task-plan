@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# Claude Agent Dispatch Installation Script
+# AgentForge Installation Script
 # Supports macOS and Linux
 
 set -e
@@ -81,11 +81,11 @@ install_script() {
     fi
 
     # Copy script
-    local script_path="$install_dir/claude-agent-dispatch"
-    cp bin/claude-agent-dispatch "$script_path"
+    local script_path="$install_dir/agentforge"
+    cp bin/agentforge "$script_path"
     chmod +x "$script_path"
 
-    print_success "Installed claude-agent-dispatch to: $script_path"
+    print_success "Installed agentforge to: $script_path"
 
     # Check if directory is in PATH
     if [[ ":$PATH:" != *":$install_dir:"* ]]; then
@@ -97,7 +97,7 @@ install_script() {
 
 # Create config directory (optional for future use)
 create_config() {
-    local config_dir="$HOME/.claude-agent-dispatch"
+    local config_dir="$HOME/.agentforge"
     if [[ ! -d "$config_dir" ]]; then
         mkdir -p "$config_dir"
         print_info "Created config directory: $config_dir"
@@ -107,9 +107,9 @@ create_config() {
 
 # Verify installation
 verify_installation() {
-    if command -v claude-agent-dispatch &> /dev/null; then
-        print_success "Installation verified! claude-agent-dispatch is ready to use"
-        print_info "Try: claude-agent-dispatch \"Implement user authentication\""
+    if command -v agentforge &> /dev/null; then
+        print_success "Installation verified! agentforge is ready to use"
+        print_info "Try: agentforge \"Implement user authentication\""
     else
         print_warning "Installation may not be complete. You might need to restart your terminal or update your PATH"
     fi
@@ -117,7 +117,7 @@ verify_installation() {
 
 # Main installation process
 main() {
-    print_info "Starting Claude Agent Dispatch installation..."
+    print_info "Starting AgentForge installation..."
 
     # Check prerequisites
     check_claude_cli
@@ -132,7 +132,7 @@ main() {
     verify_installation
 
     print_success "Installation complete!"
-    print_info "Documentation: https://github.com/candybox-ai/claude-agent-dispatch"
+    print_info "Documentation: https://github.com/candybox-ai/agentforge"
 }
 
 # Run if executed directly

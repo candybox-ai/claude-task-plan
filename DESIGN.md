@@ -1,4 +1,4 @@
-# Claude Agent Dispatch 2.0 - 设计文档
+# AgentForge 2.0 - 设计文档
 
 > 基于 ALITA 思想的自我进化 Agent 调度系统
 
@@ -68,7 +68,7 @@
 ┌─────────────────────────────────────────────────────────────┐
 │                用户反馈 (延迟可选)                            │
 │  • 立即反馈 (1分钟)                                          │
-│  • 延迟反馈 (claude-agent-dispatch feedback <id>)           │
+│  • 延迟反馈 (agentforge feedback <id>)           │
 │  • 跳过反馈                                                  │
 └────────────────────┬────────────────────────────────────────┘
                      │
@@ -85,7 +85,7 @@
 ## 📁 目录结构
 
 ```
-~/.claude-agent-dispatch/
+~/.agentforge/
 ├── config/
 │   ├── settings.yaml                # 用户配置
 │   ├── agent-sources.yaml           # Agent 来源定义
@@ -183,7 +183,7 @@
 **触发条件**：
 - 每次执行后：记录数据
 - 每10次执行：提示可优化
-- 手动触发：`claude-agent-dispatch --evolve`
+- 手动触发：`agentforge --evolve`
 
 **优化操作**：
 - 合并相似 Recipe
@@ -203,7 +203,7 @@
 
 2. **延迟反馈**
    ```bash
-   claude-agent-dispatch feedback <execution-id>
+   agentforge feedback <execution-id>
    ```
 
 3. **跳过反馈**
@@ -215,7 +215,7 @@
 ### 场景：首次遇到 Svelte 任务
 
 ```bash
-$ claude-agent-dispatch "使用 Svelte 构建待办事项应用"
+$ agentforge "使用 Svelte 构建待办事项应用"
 
 🔍 分析任务...
    关键词: Svelte, 应用, 前端
@@ -256,7 +256,7 @@ $ claude-agent-dispatch "使用 Svelte 构建待办事项应用"
 ### 场景：Recipe 冲突选择
 
 ```bash
-$ claude-agent-dispatch "分析销售数据并生成图表"
+$ agentforge "分析销售数据并生成图表"
 
 🔍 匹配 Recipes...
 📦 找到 2 个匹配:

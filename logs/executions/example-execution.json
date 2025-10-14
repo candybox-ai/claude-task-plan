@@ -133,7 +133,7 @@
     "python_version": null
   },
 
-  "log_file": "/Users/user/.claude-agent-dispatch/logs/executions/550e8400-raw.log",
+  "log_file": "/Users/user/.agentforge/logs/executions/550e8400-raw.log",
 
   "evolution_contribution": {
     "new_recipe_generated": false,

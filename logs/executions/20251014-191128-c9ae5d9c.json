@@ -1,0 +1,60 @@
+{
+  "extraction_timestamp": "2025-10-14T11:11:28Z",
+  "agents_used": [
+    "frontend-developer",
+    "typescript-pro"
+  ],
+  "tech_stack": [
+    {
+      "name": "React",
+      "category": "frontend-framework",
+      "related": [
+        "jsx",
+        "hooks",
+        "components"
+      ]
+    },
+    {
+      "name": "TypeScript",
+      "category": "language",
+      "related": [
+        "javascript",
+        "types",
+        "interfaces"
+      ]
+    },
+    {
+      "name": "Vite",
+      "category": "build-tool",
+      "related": [
+        "esm",
+        "dev-server",
+        "fast"
+      ]
+    }
+  ],
+  "execution_steps": [
+    {
+      "step": 1,
+      "name": "Requirement Clarification",
+      "status": "completed"
+    }
+  ],
+  "metrics": {
+    "execution_time_seconds": 120,
+    "files_created": 2,
+    "files_modified": 1,
+    "tests_passed": 15,
+    "tests_failed": 2
+  },
+  "errors": [
+    {
+      "type": "error",
+      "message": "Error: Type mismatch in component props"
+    },
+    {
+      "type": "warning",
+      "message": "Warning: Deprecated API usage detected"
+    }
+  ]
+}

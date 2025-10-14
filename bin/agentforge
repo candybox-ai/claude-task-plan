@@ -1,0 +1,262 @@
+#!/bin/bash
+
+# AgentForge v2.0
+# Self-Evolving Agent Orchestration for Claude Code
+# Usage: agentforge "your task description"
+#        agentforge feedback <execution-id>
+
+set -e
+
+# ============================================================================
+# Backward Compatibility Warning
+# ============================================================================
+
+if [[ "$(basename "$0")" == "claude-agent-dispatch" ]]; then
+    echo "⚠️  Warning: 'claude-agent-dispatch' is deprecated." >&2
+    echo "   Please use 'agentforge' instead." >&2
+    echo "   Learn more: https://github.com/candybox-ai/agentforge" >&2
+    echo "" >&2
+fi
+
+# ============================================================================
+# Configuration
+# ============================================================================
+
+SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
+PROJECT_ROOT="$(cd "$SCRIPT_DIR/.." && pwd)"
+CORE_DIR="$PROJECT_ROOT/core"
+
+# Source all core modules
+source "$CORE_DIR/recipe-loader.sh"
+source "$CORE_DIR/recipe-matcher.sh"
+source "$CORE_DIR/agent-finder.sh"
+source "$CORE_DIR/prompt-builder.sh"
+source "$CORE_DIR/data-extractor.sh"
+source "$CORE_DIR/feedback-collector.sh"
+source "$CORE_DIR/knowledge-recorder.sh"
+
+# Colors
+RED='\033[0;31m'
+GREEN='\033[0;32m'
+YELLOW='\033[1;33m'
+BLUE='\033[0;34m'
+CYAN='\033[0;36m'
+MAGENTA='\033[0;35m'
+NC='\033[0m'
+
+# ============================================================================
+# Language Detection
+# ============================================================================
+
+detect_language() {
+    local text="${1:-}"
+    # Support both new and old environment variable names
+    local lang_var="${AGENTFORGE_LANG:-${CLAUDE_AGENT_DISPATCH_LANG:-}}"
+
+    if [[ "$lang_var" == "en" ]]; then
+        echo "en"
+    elif [[ "$lang_var" == "zh" ]]; then
+        echo "zh"
+    elif [[ "$text" =~ [一-龯] ]]; then
+        echo "zh"
+    else
+        echo "en"
+    fi
+}
+
+# ============================================================================
+# Usage & Help
+# ============================================================================
+
+show_usage() {
+    local lang=$(detect_language "$task")
+
+    echo ""
+    echo -e "${GREEN}╔════════════════════════════════════════╗${NC}"
+    echo -e "${GREEN}║     🔥 AgentForge v2.0                ║${NC}"
+    echo -e "${GREEN}╚════════════════════════════════════════╝${NC}"
+    echo ""
+
+    if [[ "$lang" == "zh" ]]; then
+        echo -e "${BLUE}用法:${NC}"
+        echo "  agentforge \"任务描述\""
+        echo "  agentforge feedback <execution-id>"
+        echo ""
+        echo -e "${BLUE}示例:${NC}"
+        echo "  agentforge \"实现用户登录功能\""
+        echo "  agentforge feedback exec-20231011-123456"
+        echo ""
+        echo -e "${CYAN}更多信息: ${NC}https://github.com/candybox-ai/agentforge"
+    else
+        echo -e "${BLUE}Usage:${NC}"
+        echo "  agentforge \"your task description\""
+        echo "  agentforge feedback <execution-id>"
+        echo ""
+        echo -e "${BLUE}Examples:${NC}"
+        echo "  agentforge \"Implement user authentication\""
+        echo "  agentforge feedback exec-20231011-123456"
+        echo ""
+        echo -e "${CYAN}Learn more: ${NC}https://github.com/candybox-ai/agentforge"
+    fi
+    echo ""
+}
+
+show_version() {
+    echo "🔥 AgentForge v2.0.0"
+    echo "Self-Evolving Agent Orchestration for Claude Code"
+    echo "Build: $(date +%Y%m%d)"
+    echo ""
+    echo "Repository: https://github.com/candybox-ai/agentforge"
+}
+
+# ============================================================================
+# Main Task Execution Workflow
+# ============================================================================
+
+execute_task() {
+    local task="$1"
+    local lang=$(detect_language "$task")
+
+    echo ""
+    echo -e "${GREEN}╔════════════════════════════════════════╗${NC}"
+    echo -e "${GREEN}║     🔥 AgentForge v2.0                ║${NC}"
+    echo -e "${GREEN}╚════════════════════════════════════════╝${NC}"
+    echo ""
+
+    # Generate execution ID
+    local execution_id=$(generate_execution_id)
+    local start_time=$(date +%s)
+
+    print_info "🎯 Execution ID: $execution_id" >&2
+    echo "" >&2
+
+    # Step 1: Load all recipes
+    print_info "📚 Loading Recipes..." >&2
+    local recipes=$(load_all_recipes "$PROJECT_ROOT/recipes" 2>&1)
+    echo "" >&2
+
+    # Step 2: Match recipe
+    print_info "🔍 Matching task to Recipes..." >&2
+    local selected_recipe=$(match_recipe_for_task "$task" "$recipes" 2>&1)
+    local match_result=$?
+    echo "" >&2
+
+    # Step 3: Extract recommended agents from recipe (if matched)
+    local agents="[]"
+    if [[ $match_result -eq 0 ]] && [[ -n "$selected_recipe" ]]; then
+        agents=$(echo "$selected_recipe" | jq -c '.workflow.step_3_assessment.recommended_agents // []' 2>/dev/null || echo "[]")
+    fi
+
+    # Step 4: Build enhanced prompt
+    print_info "🏗️  Building enhanced prompt..." >&2
+    local prompt=$(build_prompt "$task" "$selected_recipe" "$agents" "$lang" 2>&1)
+    echo "" >&2
+
+    # Step 5: Execute with Claude
+    print_info "🚀 Executing task with Claude..." >&2
+    echo "" >&2
+    echo -e "${CYAN}═══════════════════════════════════════${NC}" >&2
+
+    # Execute and capture output
+    local output=$(claude "$prompt" 2>&1)
+    local claude_exit=$?
+
+    echo -e "${CYAN}═══════════════════════════════════════${NC}" >&2
+    echo "" >&2
+
+    local end_time=$(date +%s)
+
+    # Step 6: Extract execution data
+    print_info "📊 Extracting execution data..." >&2
+    local extraction=$(extract_execution_data "$output" "" "$start_time" "$end_time" 2>&1)
+    echo "" >&2
+
+    # Build execution record
+    local execution_data=$(echo "$extraction" | jq --arg id "$execution_id" \
+        --arg task "$task" \
+        --arg recipe "$(echo "$selected_recipe" | jq -r '.metadata.name // "none"')" \
+        '. + {
+            execution_id: $id,
+            task_description: $task,
+            recipe_used: $recipe,
+            exit_code: '$claude_exit'
+        }')
+
+    # Save execution log
+    save_execution_log "$execution_id" "$execution_data" "$PROJECT_ROOT/logs/executions" >&2
+    echo "" >&2
+
+    # Step 7: Collect feedback
+    handle_feedback "$execution_id" "$execution_data" "$lang" >&2
+    local feedback_result=$?
+
+    # If feedback provided, record to knowledge base
+    if [[ $feedback_result -eq 0 ]]; then
+        print_info "🧠 Recording to knowledge base..." >&2
+        # Feedback will be recorded by feedback-collector
+    fi
+
+    echo "" >&2
+    print_success "✨ Execution complete!" >&2
+
+    if [[ "$lang" == "zh" ]]; then
+        echo -e "${CYAN}执行ID: $execution_id${NC}" >&2
+        echo -e "${CYAN}日志: logs/executions/${execution_id}.json${NC}" >&2
+    else
+        echo -e "${CYAN}Execution ID: $execution_id${NC}" >&2
+        echo -e "${CYAN}Log: logs/executions/${execution_id}.json${NC}" >&2
+    fi
+    echo "" >&2
+
+    return $claude_exit
+}
+
+# ============================================================================
+# Feedback Command
+# ============================================================================
+
+handle_feedback_command() {
+    local execution_id="$1"
+    local lang=$(detect_language)
+
+    collect_delayed_feedback "$execution_id" "$lang"
+}
+
+# ============================================================================
+# Main Entry Point
+# ============================================================================
+
+main() {
+    # Parse command
+    local command="${1:-}"
+
+    case "$command" in
+        "")
+            show_usage
+            exit 1
+            ;;
+        "--help"|"-h")
+            show_usage
+            exit 0
+            ;;
+        "--version"|"-v")
+            show_version
+            exit 0
+            ;;
+        "feedback")
+            if [[ -z "${2:-}" ]]; then
+                echo "Error: execution-id required" >&2
+                echo "Usage: agentforge feedback <execution-id>" >&2
+                exit 1
+            fi
+            handle_feedback_command "$2"
+            ;;
+        *)
+            # Treat as task description
+            execute_task "$command"
+            ;;
+    esac
+}
+
+# Run main
+main "$@"

@@ -258,7 +258,7 @@ metadata:
   description: "Auto-generated from successful execution patterns"
   category: "$category"
   tags: $(echo "$keywords" | jq -c '.[0:5]')
-  author: "claude-agent-dispatch-auto"
+  author: "agentforge-auto"
   created_at: "$(date +%Y-%m-%d)"
   updated_at: "$(date +%Y-%m-%d)"
 
@@ -357,7 +357,7 @@ meta:
   schema_version: "1.0"
   derived_from: "$fingerprint"
   confidence: $(awk "BEGIN {printf \"%.2f\", $success_rate * $avg_satisfaction / 5.0}")
-  maintainer: "claude-agent-dispatch-auto"
+  maintainer: "agentforge-auto"
   license: "MIT"
   auto_generated: true
   source_executions: $(echo "$pattern_data" | jq -c '.executions')

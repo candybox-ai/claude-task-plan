@@ -157,7 +157,7 @@ prompt_feedback_mode() {
         echo "" >&2
         echo -e "${YELLOW}选择反馈方式：${NC}" >&2
         echo -e "  ${GREEN}[1]${NC} 立即提供反馈 (推荐)" >&2
-        echo -e "  ${BLUE}[2]${NC} 稍后提供 (使用: claude-agent-dispatch feedback $execution_id)" >&2
+        echo -e "  ${BLUE}[2]${NC} 稍后提供 (使用: agentforge feedback $execution_id)" >&2
         echo -e "  ${MAGENTA}[3]${NC} 跳过反馈" >&2
         echo "" >&2
         echo -ne "${YELLOW}您的选择 (默认: 1): ${NC}" >&2
@@ -167,7 +167,7 @@ prompt_feedback_mode() {
         echo "" >&2
         echo -e "${YELLOW}Choose feedback mode:${NC}" >&2
         echo -e "  ${GREEN}[1]${NC} Provide feedback now (recommended)" >&2
-        echo -e "  ${BLUE}[2]${NC} Provide later (use: claude-agent-dispatch feedback $execution_id)" >&2
+        echo -e "  ${BLUE}[2]${NC} Provide later (use: agentforge feedback $execution_id)" >&2
         echo -e "  ${MAGENTA}[3]${NC} Skip feedback" >&2
         echo "" >&2
         echo -ne "${YELLOW}Your choice (default: 1): ${NC}" >&2
@@ -347,10 +347,10 @@ handle_feedback() {
             save_pending_feedback "$execution_id" "$execution_data"
             if [[ "$lang" == "zh" ]]; then
                 print_info "使用以下命令稍后提供反馈:" >&2
-                echo -e "${CYAN}  claude-agent-dispatch feedback $execution_id${NC}" >&2
+                echo -e "${CYAN}  agentforge feedback $execution_id${NC}" >&2
             else
                 print_info "Provide feedback later using:" >&2
-                echo -e "${CYAN}  claude-agent-dispatch feedback $execution_id${NC}" >&2
+                echo -e "${CYAN}  agentforge feedback $execution_id${NC}" >&2
             fi
             return 1
             ;;

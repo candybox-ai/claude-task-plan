@@ -1,8 +1,8 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "$id": "https://claude-agent-dispatch.com/schemas/recipe-v1.json",
+  "$id": "https://agentforge.com/schemas/recipe-v1.json",
   "title": "Recipe Schema",
-  "description": "Schema definition for claude-agent-dispatch Recipe files",
+  "description": "Schema definition for agentforge Recipe files",
   "type": "object",
   "required": ["metadata", "triggers", "workflow", "stats", "meta"],
   "properties": {

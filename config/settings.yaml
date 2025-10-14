@@ -1,5 +1,5 @@
-# Claude Agent Dispatch 配置文件
-# ~/.claude-agent-dispatch/config/settings.yaml
+# AgentForge 配置文件
+# ~/.agentforge/config/settings.yaml
 
 # Agent 管理配置
 agents:

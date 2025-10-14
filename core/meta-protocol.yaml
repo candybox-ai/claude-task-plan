@@ -2,7 +2,7 @@
 # This defines the fundamental workflow for all tasks
 
 version: "1.0.0"
-name: "Claude Agent Dispatch Meta Protocol"
+name: "AgentForge Meta Protocol"
 description: "6-step rigorous process for task completion"
 
 workflow:

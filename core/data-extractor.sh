@@ -91,7 +91,7 @@ detect_tech_stack() {
     local keywords=$(load_tech_keywords)
 
     # Check if keywords loaded successfully
-    if [[ $(echo "$keywords" | jq 'type' 2>/dev/null) != "array" ]]; then
+    if [[ $(echo "$keywords" | jq -r 'type' 2>/dev/null) != "array" ]]; then
         print_warning "Failed to load tech keywords, returning empty array" >&2
         echo "[]"
         return
@@ -104,7 +104,8 @@ detect_tech_stack() {
     local detected=$(echo "$keywords" | jq --arg text "$text_lower" '
         [
             .[] |
-            select((.pattern // "") != "" and ($text | test(.pattern; "i"))) |
+            . as $item |
+            select((.pattern // "") != "" and ($text | test($item.pattern; "i"))) |
             {
                 name: .name,
                 category: .category,
@@ -225,7 +226,7 @@ detect_errors() {
 
     # Pattern 1: Error messages
     while IFS= read -r line; do
-        if [[ "$line" =~ [Ee]rror:|ERROR:|✗ ]]; then
+        if [[ "$line" =~ [Ee]rror: ]] || [[ "$line" =~ ERROR: ]] || [[ "$line" =~ ✗ ]]; then
             errors=$(echo "$errors" | jq --arg msg "$line" '. += [{
                 type: "error",
                 message: $msg
@@ -235,7 +236,7 @@ detect_errors() {
 
     # Pattern 2: Warning messages
     while IFS= read -r line; do
-        if [[ "$line" =~ [Ww]arning:|WARNING:|⚠ ]]; then
+        if [[ "$line" =~ [Ww]arning: ]] || [[ "$line" =~ WARNING: ]] || [[ "$line" =~ ⚠ ]]; then
             errors=$(echo "$errors" | jq --arg msg "$line" '. += [{
                 type: "warning",
                 message: $msg

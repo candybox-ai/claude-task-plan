@@ -1,12 +1,12 @@
 # Web Development Examples
 
-This document shows realistic examples of using `claude-agent-dispatch` for web development tasks with specific project structures and requirements.
+This document shows realistic examples of using `agentforge` for web development tasks with specific project structures and requirements.
 
 ## Example 1: E-commerce Platform with React & Node.js
 
 ### Task Description
 ```bash
-claude-agent-dispatch "Build a complete e-commerce platform using React frontend and Node.js backend. Project structure: /src/frontend (React components), /src/backend (Express API), /src/database (MongoDB schemas). Features needed: product catalog with search/filters, shopping cart, checkout with Stripe integration, user authentication (JWT), admin dashboard for product management. Implement responsive design for mobile/desktop."
+agentforge "Build a complete e-commerce platform using React frontend and Node.js backend. Project structure: /src/frontend (React components), /src/backend (Express API), /src/database (MongoDB schemas). Features needed: product catalog with search/filters, shopping cart, checkout with Stripe integration, user authentication (JWT), admin dashboard for product management. Implement responsive design for mobile/desktop."
 ```
 
 ### What Claude Might Ask (Clarification Phase)
@@ -37,7 +37,7 @@ claude-agent-dispatch "Build a complete e-commerce platform using React frontend
 
 ### Task Description
 ```bash
-claude-agent-dispatch "Create real-time analytics dashboard for web application metrics. Tech stack: Next.js 14 with TypeScript, PostgreSQL database, WebSocket connections. Data sources: /data/analytics/ directory with JSON files containing user events, page views, conversion data. Dashboard features: real-time visitor counter, conversion funnel visualization, geographic user distribution map, performance metrics charts. Deploy with Docker Compose for local development."
+agentforge "Create real-time analytics dashboard for web application metrics. Tech stack: Next.js 14 with TypeScript, PostgreSQL database, WebSocket connections. Data sources: /data/analytics/ directory with JSON files containing user events, page views, conversion data. Dashboard features: real-time visitor counter, conversion funnel visualization, geographic user distribution map, performance metrics charts. Deploy with Docker Compose for local development."
 ```
 
 ### What You'll Get
@@ -68,7 +68,7 @@ claude-agent-dispatch "Create real-time analytics dashboard for web application 
 
 ### Task Description
 ```bash
-claude-agent-dispatch "Build headless CMS using Strapi backend and Next.js frontend. Project located in /projects/my-cms/ with structure: /backend (Strapi API), /frontend (Next.js site), /content (markdown files). Features: article management, media library, user roles (admin/editor/author), SEO optimization, multi-language support (English/Spanish). Content types: blog posts, pages, product descriptions. Deploy backend to Railway and frontend to Vercel."
+agentforge "Build headless CMS using Strapi backend and Next.js frontend. Project located in /projects/my-cms/ with structure: /backend (Strapi API), /frontend (Next.js site), /content (markdown files). Features: article management, media library, user roles (admin/editor/author), SEO optimization, multi-language support (English/Spanish). Content types: blog posts, pages, product descriptions. Deploy backend to Railway and frontend to Vercel."
 ```
 
 ### Detailed Workflow
@@ -99,7 +99,7 @@ claude-agent-dispatch "Build headless CMS using Strapi backend and Next.js front
 
 ### Task Description
 ```bash
-claude-agent-dispatch "Convert existing React application at /src/my-app/ to Progressive Web App with offline capabilities. Requirements: service worker for caching strategies, push notifications for user engagement, offline data sync with IndexedDB, responsive design optimized for mobile devices. App features: task management, calendar integration, file sharing. Target: installable PWA with 90+ PWA score in Lighthouse."
+agentforge "Convert existing React application at /src/my-app/ to Progressive Web App with offline capabilities. Requirements: service worker for caching strategies, push notifications for user engagement, offline data sync with IndexedDB, responsive design optimized for mobile devices. App features: task management, calendar integration, file sharing. Target: installable PWA with 90+ PWA score in Lighthouse."
 ```
 
 ### Technical Implementation
@@ -124,12 +124,12 @@ claude-agent-dispatch "Convert existing React application at /src/my-app/ to Pro
 
 **❌ Too Generic:**
 ```bash
-claude-agent-dispatch "Build a website"
+agentforge "Build a website"
 ```
 
 **✅ Specific and Complete:**
 ```bash
-claude-agent-dispatch "Build portfolio website using Astro static site generator in /projects/portfolio/. Features: project showcase with filtering, blog section with markdown content, contact form with email integration, dark/light theme toggle. Deploy to Netlify with automated builds from GitHub. Optimize for Core Web Vitals and accessibility (WCAG 2.1 AA compliance)."
+agentforge "Build portfolio website using Astro static site generator in /projects/portfolio/. Features: project showcase with filtering, blog section with markdown content, contact form with email integration, dark/light theme toggle. Deploy to Netlify with automated builds from GitHub. Optimize for Core Web Vitals and accessibility (WCAG 2.1 AA compliance)."
 ```
 
 ### 🎯 Include These Details

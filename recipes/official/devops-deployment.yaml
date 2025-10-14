@@ -7,7 +7,7 @@ metadata:
   description: "DevOps 和部署专用 Recipe，支持 CI/CD、容器化、云原生部署"
   category: "devops"
   tags: ["devops", "deployment", "cicd", "docker", "kubernetes", "cloud"]
-  author: "claude-agent-dispatch"
+  author: "agentforge"
   created_at: "2025-10-13"
   updated_at: "2025-10-13"
 
@@ -329,7 +329,7 @@ meta:
   schema_version: "1.0"
   derived_from: null
   confidence: 0.90
-  maintainer: "claude-agent-dispatch"
+  maintainer: "agentforge"
   license: "MIT"
   related_recipes:
     - "api-development.yaml"

@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Integration Test Suite - Simplified and Robust
-# Tests all major components of Claude Agent Dispatch
+# Tests all major components of AgentForge
 
 PROJECT_ROOT="$(cd "$(dirname "$0")/.." && pwd)"
 TEST_OUTPUT="$(mktemp -d)"
@@ -46,7 +46,7 @@ trap cleanup EXIT
 
 echo ""
 echo -e "${CYAN}╔════════════════════════════════════════╗${NC}"
-echo -e "${CYAN}║  Claude Agent Dispatch Integration    ║${NC}"
+echo -e "${CYAN}║  AgentForge Integration    ║${NC}"
 echo -e "${CYAN}║           Test Suite                   ║${NC}"
 echo -e "${CYAN}╚════════════════════════════════════════╝${NC}"
 echo ""
@@ -65,7 +65,7 @@ test_module "Evolution modules exist" \
 
 # Test 4: Main script exists and is executable
 test_module "Main script exists and executable" \
-    "[[ -x '$PROJECT_ROOT/bin/claude-agent-dispatch' ]]"
+    "[[ -x '$PROJECT_ROOT/bin/agentforge' ]]"
 
 # Test 5: Config loader can load agent sources
 test_module "Config loader loads agent sources" \
@@ -93,11 +93,11 @@ test_module "Prompt builder creates prompts" \
 
 # Test 11: Data extractor extracts agents
 test_module "Data extractor extracts agents" \
-    "source '$PROJECT_ROOT/core/data-extractor.sh' && agents=\$(extract_agents_from_output 'Using frontend-developer' 2>/dev/null) && [[ \$(echo \"\$agents\" | jq 'length') -gt 0 ]]"
+    "source '$PROJECT_ROOT/core/data-extractor.sh' && agents=\$(extract_agents_from_output 'Launching frontend-developer agent' 2>/dev/null) && [[ \$(echo \"\$agents\" | jq 'length') -gt 0 ]]"
 
 # Test 12: Data extractor extracts tech stack
 test_module "Data extractor extracts tech stack" \
-    "source '$PROJECT_ROOT/core/data-extractor.sh' && stack=\$(extract_tech_stack 'React TypeScript Node.js' 2>/dev/null) && [[ \$(echo \"\$stack\" | jq 'length') -gt 0 ]]"
+    "source '$PROJECT_ROOT/core/data-extractor.sh' && stack=\$(detect_tech_stack 'React TypeScript Node.js' 2>/dev/null) && [[ \$(echo \"\$stack\" | jq 'length') -gt 0 ]]"
 
 # Test 13: Knowledge recorder creates files
 mkdir -p "$TEST_OUTPUT/knowledge"
@@ -118,11 +118,11 @@ test_module "Optimizer gets recipe statistics" \
 
 # Test 17: Main script shows help
 test_module "Main script shows help" \
-    "'$PROJECT_ROOT/bin/claude-agent-dispatch' --help 2>&1 | grep -q 'Claude Agent Dispatch'"
+    "'$PROJECT_ROOT/bin/agentforge' --help 2>&1 | grep -q 'AgentForge'"
 
 # Test 18: Main script shows version
 test_module "Main script shows version" \
-    "'$PROJECT_ROOT/bin/claude-agent-dispatch' --version 2>&1 | grep -q 'v2.0'"
+    "'$PROJECT_ROOT/bin/agentforge' --version 2>&1 | grep -q 'v2.0'"
 
 # Summary
 echo ""

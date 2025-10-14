@@ -1,6 +1,6 @@
-# Claude Agent Dispatch - Recipes
+# AgentForge - Recipes
 
-This directory contains Recipe files that define task-specific workflows and Agent coordination strategies for claude-agent-dispatch.
+This directory contains Recipe files that define task-specific workflows and Agent coordination strategies for agentforge.
 
 ## 📁 Directory Structure
 
@@ -100,10 +100,10 @@ cp recipes/meta/templates/basic.yaml recipes/custom/my-recipe.yaml
 
 ### Method 2: Auto-Generation
 
-When you successfully complete a task, claude-agent-dispatch can automatically generate a recipe:
+When you successfully complete a task, agentforge can automatically generate a recipe:
 
 ```bash
-$ claude-agent-dispatch "your task"
+$ agentforge "your task"
 # ... task completes successfully ...
 🧬 Generate Recipe for future use? (Y/n): y
 ✅ Recipe generated: recipes/generated/task-abc123-v1.0.yaml
@@ -152,7 +152,7 @@ Recipes are optimized when:
 
 ## 🎨 Recipe Matching
 
-When you run a task, claude-agent-dispatch:
+When you run a task, agentforge:
 
 1. **Keyword Filtering**: Quickly filters recipes by keywords
 2. **Pattern Matching**: Checks regex patterns
@@ -162,7 +162,7 @@ When you run a task, claude-agent-dispatch:
 ### Example Matching
 
 ```bash
-$ claude-agent-dispatch "Build a React dashboard with charts"
+$ agentforge "Build a React dashboard with charts"
 
 🔍 Matching Recipes...
 📦 Found 2 matching recipes:
