@@ -9,7 +9,7 @@
 [![Claude Code](https://img.shields.io/badge/Claude_Code-驱动-blueviolet.svg)](https://github.com/anthropics/claude-code)
 [![Shell](https://img.shields.io/badge/Shell-Bash-4EAA25.svg)](https://www.gnu.org/software/bash/)
 
-[快速开始](#-快速开始) • [功能特性](#-功能特性) • [系统架构](#-系统架构) • [文档](#-文档) • [社区](#-社区)
+[快速开始](#-快速开始) • [功能特性](#-功能特性) • [配置](#-配置) • [测试](#-测试) • [社区](#-社区)
 
 ---
 
@@ -234,6 +234,35 @@ export GITHUB_TOKEN=your_github_token
 
 ---
 
+## 🧪 测试
+
+运行集成测试套件：
+```bash
+bash tests/integration-test.sh
+```
+
+测试覆盖范围：
+- ✅ 配置加载
+- ✅ Recipe 加载和匹配
+- ✅ 智能体发现（4 层）
+- ✅ 提示生成
+- ✅ 数据提取
+- ✅ 知识记录
+- ✅ Recipe 生成
+- ✅ Recipe 优化
+- ✅ 主脚本功能
+
+**当前结果：** 12/18 测试通过（67% 通过率）
+
+测试单个模块：
+```bash
+bash core/recipe-loader.sh      # 测试 Recipe 解析
+bash core/agent-finder.sh       # 测试智能体发现
+bash core/optimizer.sh          # 测试优化器
+```
+
+---
+
 ## 📖 完整文档
 
 完整的中文文档请参考英文 README 的对应章节：
@@ -241,7 +270,6 @@ export GITHUB_TOKEN=your_github_token
 - 🎯 [Recipe 系统](../README.md#-recipe-system) - Recipe 结构和进化
 - 🔍 [4 层智能体发现](../README.md#-4-tier-agent-discovery) - 智能体搜索策略
 - 🧠 [自我进化原理](../README.md#-self-evolution-alita-principles) - ALITA 原则详解
-- 🧪 [测试](../README.md#-testing) - 测试套件和覆盖率
 
 ---
 
